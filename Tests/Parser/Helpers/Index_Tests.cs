@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Parser.Helpers;
 
-namespace Tests.Parser
+namespace Tests.Parser.Helpers
 {
     class Index_Tests
     {

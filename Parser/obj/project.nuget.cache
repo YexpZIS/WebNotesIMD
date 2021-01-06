@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "AkanFS7GUJe3BvtzCEqataZh4pVOGy+hppfPQu0yL/VinKRNlpoMWjTLg/BX2UOdoG2VSGhAxb8zbmRX4yfIbQ==",
+  "dgSpecHash": "mrpEa33KzZ3W0VEKaYy0Ar5kTRkLYxM/Z+BUQWc756cV5Eq83sw2lw3fQF05NRsKBFd/VDom43NhtFeTwcTVLQ==",
   "success": true,
   "projectFilePath": "E:\\Projects\\C#\\2021\\MDParser\\Parser\\Parser.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Den\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\Den\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
