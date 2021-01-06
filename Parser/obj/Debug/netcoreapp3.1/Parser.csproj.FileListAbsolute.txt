@@ -1,0 +1,13 @@
+E:\Projects\C#\2021\MDParser\Parser\bin\Debug\netcoreapp3.1\Parser.exe
+E:\Projects\C#\2021\MDParser\Parser\bin\Debug\netcoreapp3.1\Parser.deps.json
+E:\Projects\C#\2021\MDParser\Parser\bin\Debug\netcoreapp3.1\Parser.runtimeconfig.json
+E:\Projects\C#\2021\MDParser\Parser\bin\Debug\netcoreapp3.1\Parser.runtimeconfig.dev.json
+E:\Projects\C#\2021\MDParser\Parser\bin\Debug\netcoreapp3.1\Parser.dll
+E:\Projects\C#\2021\MDParser\Parser\bin\Debug\netcoreapp3.1\Parser.pdb
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.AssemblyInfoInputs.cache
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.AssemblyInfo.cs
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.csproj.CoreCompileInputs.cache
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.dll
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.pdb
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.genruntimeconfig.cache
+E:\Projects\C#\2021\MDParser\Parser\obj\Debug\netcoreapp3.1\Parser.csprojAssemblyReference.cache
