@@ -10,7 +10,10 @@ namespace Tests.Parser.Helpers
         [OneTimeSetUp]
         public void Init()
         {
-            _seeker = new Seeker();
+            IDepth depth = new Depth();
+            Index index = new Index(depth);
+
+            _seeker = new Seeker(depth, index);
         }
 
         [Test]

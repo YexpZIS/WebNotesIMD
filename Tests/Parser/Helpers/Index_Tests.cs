@@ -17,7 +17,7 @@ namespace Tests.Parser.Helpers
             public void Init()
             {
                 IDepth depth = new Depth();
-                _index = new Index(ref depth);
+                _index = new Index(depth);
             }
 
             [SetUp]
@@ -222,7 +222,7 @@ namespace Tests.Parser.Helpers
 
                 lines = new string[] { "----", "", "", "", "" };
                 var obj = depth.Object;
-                _index = new Index(ref obj);
+                _index = new Index(obj);
                 // Act
                 index = _index.FindIndex(ref lines, 0, 0);
                 // Assert
@@ -241,7 +241,7 @@ namespace Tests.Parser.Helpers
 
                 lines = new string[] { "\t----", "", "----", "", "" };
                 var obj = depth.Object;
-                _index = new Index(ref obj);
+                _index = new Index(obj);
                 // Act
                 index = _index.FindIndex(ref lines, 0, 0);
                 // Assert
@@ -259,7 +259,7 @@ namespace Tests.Parser.Helpers
 
                 lines = new string[] { "==", "", "", "==", "" };
                 var obj = depth.Object;
-                _index = new Index(ref obj);
+                _index = new Index(obj);
                 // Act
                 index = _index.FindIndex(ref lines, 0, 0, "==");
                 // Assert

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Parser.HtmlObjects
 {
-    interface HtmlObject
+    interface IHtmlObject
     {
-        string isHtmlObject(ref string[] Data, int index);
+        string isHtmlObject(string[] Data, int index);
         int GetIndex();
     }
 }

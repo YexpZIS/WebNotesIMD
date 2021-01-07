@@ -6,7 +6,7 @@ namespace Parser.Helpers
     {
         private IDepth _depth;
 
-        public Index(ref IDepth depth)
+        public Index(IDepth depth)
         {
             _depth = depth;
         }

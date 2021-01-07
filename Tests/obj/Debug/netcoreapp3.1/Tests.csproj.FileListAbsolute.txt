@@ -99,3 +99,5 @@ E:\Projects\C#\2021\MDParser\Tests\obj\Debug\netcoreapp3.1\Tests.pdb
 E:\Projects\C#\2021\MDParser\Tests\obj\Debug\netcoreapp3.1\Tests.genruntimeconfig.cache
 E:\Projects\C#\2021\MDParser\Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
 E:\Projects\C#\2021\MDParser\Tests\bin\Debug\netcoreapp3.1\Moq.dll
+E:\Projects\C#\2021\MDParser\Tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+E:\Projects\C#\2021\MDParser\Tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll

@@ -5,7 +5,7 @@ namespace Tests.Parser.Helpers
 {
     class Depth_Tests
     {
-        private Depth _depth;
+        private IDepth _depth;
 
         [SetUp]
         public void Initr()

@@ -9,10 +9,12 @@ namespace Parser.Helpers
         private Index _index;
         private IDepth _depth;
 
-        public Seeker()
+        public Seeker(IDepth depth, Index index)
         {
-            _depth = new Depth();
-            _index = new Index(ref _depth);
+            /*_depth = new Depth();
+            _index = new Index(ref _depth);*/
+            _depth = depth;
+            _index = index;
         }
 
         // Index
