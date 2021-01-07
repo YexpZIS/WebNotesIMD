@@ -15,6 +15,7 @@ namespace Tests.Parser.Helpers
 
         // Arrange
         [TestCase("", 0)]
+        [TestCase("\t", 1)]
         [TestCase("Text", 0)]
         [TestCase(" Text", 0)]
         [TestCase("  Text", 0)]

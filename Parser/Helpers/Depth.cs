@@ -37,11 +37,16 @@ namespace Parser.Helpers
         {
             float nowDepth = 0;
 
-            for (int i = 0; i < line.Length; i++)
+            for (int i = 0; i <= line.Length; i++)
             {
                 if ((int)nowDepth == depth)
                 {
                     return new string(line.Skip(i).ToArray());
+                }
+
+                if (i == line.Length) 
+                {
+                    break;
                 }
 
                 if (line[i].Equals('\t'))

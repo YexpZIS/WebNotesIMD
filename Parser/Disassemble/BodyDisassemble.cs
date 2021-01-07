@@ -37,6 +37,7 @@ namespace Parser.Disassemble
         {
             htmlObjects.Add(_service.GetService<ListItem>());
             htmlObjects.Add(_service.GetService<Code>());
+            htmlObjects.Add(_service.GetService<InlineCode>());
             htmlObjects.Add(_service.GetService<Text>());
         }
 

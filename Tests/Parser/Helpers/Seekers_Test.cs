@@ -36,6 +36,7 @@ namespace Tests.Parser.Helpers
             Assert.AreEqual(4, index);
         }
 
+        // Arrange
         [TestCase("  Text", 0)]
         [TestCase("    Text", 1)]
         [TestCase("\tText", 1)]
@@ -44,15 +45,15 @@ namespace Tests.Parser.Helpers
         [TestCase("\t\t\t\t\tText", 5)]
         public void check_GetDepth(string text, int depth)
         {
-            // Arrange
-
             // Act
             int calculated_depth = _seeker.GetDepth(text);
             // Assert
             Assert.AreEqual(depth, calculated_depth);
         }
 
-
+        // Arrange
+        [TestCase("\t", 1, "")]
+        [TestCase("code", 1, "code")]
         [TestCase(" test", -1, " test")]
         [TestCase("\ttest", 1, "test")]
         [TestCase("\t\ttest", 1, "\ttest")]

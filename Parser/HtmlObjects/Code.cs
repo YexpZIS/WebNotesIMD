@@ -38,7 +38,7 @@ namespace Parser.HtmlObjects
                 _depth = _seeker.GetDepth(Data[i]);
                 if (_seeker.GetDepth(Data[i]) > depth)
                 {
-                    code += _text.isHtmlObject(Data, i, _depth);
+                    code += _text.isHtmlObject(Data, i, depth + 1);
                 }
                 else
                 {

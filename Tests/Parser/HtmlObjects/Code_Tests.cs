@@ -39,5 +39,55 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual("<code><br>\ncode<br>\n<br>\n</code>\n", text);
         }
+
+        [Test]
+        public void NoCode()
+        {
+            // Arrange
+            lines = new string[] { "\t", "code", "\t" };
+            // Act
+            text = _code.isHtmlObject(lines, 1, 0);
+            // Assert
+            Assert.AreEqual(null, text);
+        }
+
+        [Test]
+        public void SpaceBetweenTwoBlocksOfCode()
+        {
+            // Arrange
+            lines = new string[] { "\techo 'text'", "\t", "\tls -ahl" ,"" ,"\trm -rf"};
+            // Act
+            text = _code.isHtmlObject(lines, 0, 0);
+            // Assert
+            Assert.AreEqual("<code>" +
+                string.Join("<br>\n", new string[] { "echo 'text'", "", "ls -ahl" }) + 
+                "<br>\n</code>\n", text);
+        }
+
+        [Test]
+        public void RemoveSomeTabs()
+        {
+            // Arrange
+            lines = new string[] { "\t\techo 'text'", "\t\t\t", "\tls -ahl", "", "\trm -rf" };
+            // Act
+            text = _code.isHtmlObject(lines, 1, 0);
+            // Assert
+            Assert.AreEqual("<code>" +
+                string.Join("<br>\n", new string[] { "\t\t", "ls -ahl" }) +
+                "<br>\n</code>\n", text);
+        }
+
+        [Test]
+        public void FourSpacesInsteadOneTab()
+        {
+            // Arrange
+            lines = new string[] { "    echo 'text'", "        \t", "ls -ahl", "", "\trm -rf" };
+            // Act
+            text = _code.isHtmlObject(lines, 0, 0);
+            // Assert
+            Assert.AreEqual("<code>" +
+                string.Join("<br>\n", new string[] { "echo 'text'", "    \t" }) +
+                "<br>\n</code>\n", text);
+        }
     }
 }
