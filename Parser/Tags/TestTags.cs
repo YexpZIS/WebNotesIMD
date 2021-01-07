@@ -19,7 +19,7 @@ namespace Parser.Tags
             { Tag.Download, new string[]{ "<download name={0}>{1}</download>" } },
             { Tag.Audio, new string[]{ "<audio name={0}>{1}</audio>\n" } },
             { Tag.Video, new string[]{ "<video type={0}>{1}</video>\n" } },
-            { Tag.Text, new string[]{ "{0}\n"} },
+            { Tag.Text, new string[]{ "{0}<br>\n"} },
         };
 
         public int GetNextId()

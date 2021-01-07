@@ -6,7 +6,7 @@ namespace Parser.HtmlObjects
 {
     interface IHtmlObject
     {
-        string isHtmlObject(string[] Data, int index);
+        string isHtmlObject(string[] Data, int index, int depth);
         int GetIndex();
     }
 }

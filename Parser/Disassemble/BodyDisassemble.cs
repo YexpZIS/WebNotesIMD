@@ -13,6 +13,7 @@ namespace Parser.Disassemble
 
         private string[] _body;
         private string finalString = "";
+        private int depth = 0;
 
         public BodyDisassemble(IServiceProvider service)
         {
@@ -23,6 +24,7 @@ namespace Parser.Disassemble
         {
             InitHtmlObjects();
             _body = body;
+            depth = nowDepth;
 
             for (int i = 0; i < body.Length; i++)
             {
@@ -34,6 +36,7 @@ namespace Parser.Disassemble
         private void InitHtmlObjects()
         {
             htmlObjects.Add(_service.GetService<ListItem>());
+            htmlObjects.Add(_service.GetService<Code>());
             htmlObjects.Add(_service.GetService<Text>());
         }
 
@@ -41,7 +44,7 @@ namespace Parser.Disassemble
         {
             foreach (var obj in htmlObjects)
             {
-                var text = obj.isHtmlObject(_body, index);
+                var text = obj.isHtmlObject(_body, index, depth);
 
                 if (text != null)
                 {

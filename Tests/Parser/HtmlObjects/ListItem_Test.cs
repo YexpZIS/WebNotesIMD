@@ -55,7 +55,7 @@ namespace Tests.Parser.HtmlObjects
             mock.Setup(x=>x.Disassemble(new string[] { "body", "text" },0)).Returns("body\ntext");
             _item = new ListItem(mock.Object, _tag, _seeker);
             // Act
-            text = _item.isHtmlObject(_lines, 0);
+            text = _item.isHtmlObject(_lines, 0, -1);
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "body\ntext"), text);
@@ -74,7 +74,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 0);
+            text = _item.isHtmlObject(_lines, 0, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
@@ -91,7 +91,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 0);
+            text = _item.isHtmlObject(_lines, 0, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
@@ -111,7 +111,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 0);
+            text = _item.isHtmlObject(_lines, 0, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
@@ -132,7 +132,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 0);
+            text = _item.isHtmlObject(_lines, 0, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
@@ -150,7 +150,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 0);
+            text = _item.isHtmlObject(_lines, 0, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
@@ -170,7 +170,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 3);
+            text = _item.isHtmlObject(_lines, 3, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "text") +
@@ -188,7 +188,7 @@ namespace Tests.Parser.HtmlObjects
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
-            text = _item.isHtmlObject(_lines, 3);
+            text = _item.isHtmlObject(_lines, 3, -1);
 
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "text") +

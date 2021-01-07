@@ -26,7 +26,8 @@ namespace Parser
             services.AddSingleton<Seeker>();
 
             // HtmlObjects
-            services.AddSingleton<ListItem>();
+            services.AddTransient<ListItem>();
+            services.AddTransient<Code>();
             services.AddSingleton<Text>();
 
             // Tags

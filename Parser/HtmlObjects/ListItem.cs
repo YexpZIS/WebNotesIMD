@@ -25,7 +25,7 @@ namespace Parser.HtmlObjects
             _seeker = seeker;
         }
 
-        public string isHtmlObject(string[] Data, int index)
+        public string isHtmlObject(string[] Data, int index, int depth)
         {
             this.index = index;
             this.Data = Data;
