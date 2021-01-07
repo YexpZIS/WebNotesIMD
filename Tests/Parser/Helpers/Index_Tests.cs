@@ -37,7 +37,7 @@ namespace Tests.Parser.Helpers
                 // Act
                 index = _index.FindIndex(ref lines, 0, 0);
                 // Assert
-                Assert.AreEqual(0, index);
+                Assert.AreEqual(1, index);
             }
 
             [Test]
@@ -48,7 +48,7 @@ namespace Tests.Parser.Helpers
                 // Act
                 index = _index.FindIndex(ref lines, 0, 0);
                 // Assert
-                Assert.AreEqual(5, index);
+                Assert.AreEqual(6, index);
             }
 
             [Test]
@@ -59,7 +59,7 @@ namespace Tests.Parser.Helpers
                 // Act
                 index = _index.FindIndex(ref lines, 0, 0);
                 // Assert
-                Assert.AreEqual(5, index);
+                Assert.AreEqual(6, index);
             }
 
             [Test]
@@ -70,7 +70,7 @@ namespace Tests.Parser.Helpers
                 // Act
                 index = _index.FindIndex(ref lines, 3, 0);
                 // Assert
-                Assert.AreEqual(5, index);
+                Assert.AreEqual(6, index);
             }
 
             // Between start and end position
@@ -131,7 +131,7 @@ namespace Tests.Parser.Helpers
                 // Act
                 index = _index.FindIndex(ref lines, 0, -1);
                 // Assert
-                Assert.AreEqual(4, index);
+                Assert.AreEqual(5, index);
             }
 
             [Test]

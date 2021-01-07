@@ -39,15 +39,6 @@ namespace Parser.HtmlObjects
 
                 string bodyStr = _body.Disassemble(body, nowDepth);
 
-                //index = end - 1;
-
-                /*var Body = GetBodyDisassemble();//new BodyDisassemble(ref _tags, ref body);
-                Body.SetData(ref body);
-                string b = Body.Disassemble(nowDepth);
-                //body = _seeker.RemovePrefix(body,nowDepth);
-
-                return string.Format(_tags[Tag.ListItem][0], id, head) +
-                    string.Format(_tags[Tag.ListItem][1], id, b);*/
                 return GetHtml(head, bodyStr);
             }
 
@@ -73,7 +64,7 @@ namespace Parser.HtmlObjects
         {
             index += 2; // Skip header and delimiter
             int end = _seeker.FindIndex(ref Data, index, nowDepth);
-            var body =  Data.Skip(index).Take(end - index).ToArray();
+            var body =  Data.Skip(index).Take(end - index - 1).ToArray();
             index = end;
             return body;
         }
