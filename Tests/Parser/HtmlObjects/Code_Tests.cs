@@ -37,7 +37,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _code.isHtmlObject(lines, 0, 0);
             // Assert
-            Assert.AreEqual("",text);
+            Assert.AreEqual("<code><br>\ncode<br>\n<br>\n</code>\n", text);
         }
     }
 }
