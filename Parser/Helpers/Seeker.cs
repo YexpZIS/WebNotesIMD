@@ -8,11 +8,11 @@ namespace Parser.Helpers
     {
         private Index _index;
         private IDepth _depth;
+        private LineModifier _modifier;
 
-        public Seeker(IDepth depth, Index index)
+        public Seeker(LineModifier modifier, IDepth depth, Index index)
         {
-            /*_depth = new Depth();
-            _index = new Index(ref _depth);*/
+            _modifier = modifier;
             _depth = depth;
             _index = index;
         }
@@ -33,6 +33,12 @@ namespace Parser.Helpers
         public string RemovePrefix(string line, int depth)
         {
             return _depth.RemoveTabsAndSpacesBeforeText(line, depth);
+        }
+
+        // LineModifier
+        public string InsertTagsInLine(string line, string tags, string delimiter = "````")
+        {
+            return _modifier.InsertTagsInLine(line, tags, delimiter);
         }
     }
 }

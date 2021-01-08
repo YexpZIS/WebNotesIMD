@@ -22,6 +22,7 @@ namespace Parser
 
             // Helpers
             services.AddSingleton<IDepth,Depth>();
+            services.AddSingleton<LineModifier>();
             services.AddSingleton<Parser.Helpers.Index>();
             services.AddSingleton<Seeker>();
 

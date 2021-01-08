@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using Parser.Helpers;
 
 namespace Tests.Parser.Helpers
@@ -10,10 +11,15 @@ namespace Tests.Parser.Helpers
         [OneTimeSetUp]
         public void Init()
         {
-            IDepth depth = new Depth();
-            Index index = new Index(depth);
+            ServiceCollection services = new ServiceCollection();
+            services.AddSingleton<IDepth, Depth>();
+            services.AddSingleton<Index>();
+            services.AddSingleton<LineModifier>();
+            services.AddSingleton<Seeker>();
 
-            _seeker = new Seeker(depth, index);
+            var provider = services.BuildServiceProvider();
+
+            _seeker = provider.GetService<Seeker>();
         }
 
         [Test]
@@ -65,6 +71,22 @@ namespace Tests.Parser.Helpers
             string clear_text = _seeker.RemovePrefix(line, depth);
             // Assert
             Assert.AreEqual(result, clear_text);
+        }
+
+        // Arrange
+        [TestCase("","", "</>{0}<.>")]
+        [TestCase("text","text", "</>{0}<.>")]
+        [TestCase("</>text<.>","````text````", "</>{0}<.>")]
+        [TestCase("</>text<.>","````text", "</>{0}<.>")]
+        [TestCase("text</><.>", "text````", "</>{0}<.>")]
+        [TestCase("text</>text<.>text", "text````text````text", "</>{0}<.>")]
+        [TestCase("text0 </>text<.> text", "text0 __text__ text", "</>{0}<.>", "__")]
+        public void check_InsertTagsInLine(string result, string line, string tags, string delimiter = "````")
+        {
+            // Act
+            string html = _seeker.InsertTagsInLine(line, tags, delimiter);
+            // Assert
+            Assert.AreEqual(result, html);
         }
     }
 }

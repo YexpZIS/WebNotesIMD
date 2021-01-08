@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
+using Parser.Helpers;
 using Parser.HtmlObjects;
 using Parser.Tags;
 
@@ -16,6 +17,10 @@ namespace Tests.Parser.HtmlObjects
         public void Init()
         {
             ServiceCollection services = new ServiceCollection();
+            services.AddSingleton<IDepth, Depth>();
+            services.AddSingleton<Index>();
+            services.AddSingleton<LineModifier>();
+            services.AddSingleton<Seeker>();
             services.AddSingleton<ITag, TestTags>();
             services.AddSingleton<InlineCode>();
 

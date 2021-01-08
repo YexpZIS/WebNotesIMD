@@ -25,6 +25,7 @@ namespace Tests.Parser.HtmlObjects
             ServiceCollection services = new ServiceCollection();
             services.AddSingleton<IDepth, Depth>();
             services.AddSingleton<Index>();
+            services.AddSingleton<LineModifier>();
             services.AddSingleton<Seeker>();
             services.AddSingleton<ITag, TestTags>();
 
