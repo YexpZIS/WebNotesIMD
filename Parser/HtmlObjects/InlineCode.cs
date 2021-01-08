@@ -35,7 +35,7 @@ namespace Parser.HtmlObjects
                 return null;
             }
 
-            return result;
+            return result + "<br>\n";
         }       
     }
 }

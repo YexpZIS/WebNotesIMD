@@ -6,9 +6,7 @@ namespace Parser.Tags
 {
     public class TestTags : ITag
     {
-        public int id { get; set; } = 0;
-
-        public Dictionary<Tag, string[]> tags { get; set; } = new Dictionary<Tag, string[]>()
+        public override Dictionary<Tag, string[]> tags { get; set; } = new Dictionary<Tag, string[]>()
         {
             { Tag.Header, new string[]{ "<head>{0}</head>\n", "<tags>{0}</tags>\n"  } },
             { Tag.ListItem,new string[]{ "<card-head id={0}>{1}</card-head>\n", "<text id={0}>{1}</text>\n" } },
@@ -22,10 +20,5 @@ namespace Parser.Tags
             { Tag.Text, new string[]{ "{0}<br>\n"} },
         };
 
-        public int GetNextId()
-        {
-            id++;
-            return id;
-        }
     }
 }

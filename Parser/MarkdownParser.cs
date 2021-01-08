@@ -33,7 +33,7 @@ namespace Parser
             services.AddSingleton<Text>();
 
             // Tags
-            services.AddScoped<ITag, TestTags>();
+            services.AddTransient<ITag, TestTags>();
 
             serviceProvider = services.BuildServiceProvider();
             
@@ -47,6 +47,10 @@ namespace Parser
             var lines = new string[] { "Header","----",
             "Some text etxt ttt tt", " text ",
             "\tc code", "\t ls -ahl","    sudo apt update", "text" ,"----"};
+
+            lines = new string[] { "head", "----", "body", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
+                "head1", "----", "body1", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
+                "head2", "----", "body2", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2"};
 
             Console.WriteLine(text.Disassemble(lines,0));
             // for()

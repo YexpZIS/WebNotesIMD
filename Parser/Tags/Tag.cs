@@ -18,11 +18,20 @@ namespace Parser.Tags
         Text
     }
 
-    public interface ITag
+    public abstract class ITag
     {
-        int id { get; set; }
-        Dictionary<Tag, string[]> tags { get; set; }
+        public int id { get; set; }
+        public abstract Dictionary<Tag, string[]> tags { get; set; }
 
-        int GetNextId();
+        public int GetNextId()
+        {
+            id++;
+            return id;
+        }
+
+        public void ResetId()
+        {
+            id = 0;
+        }
     }
 }
