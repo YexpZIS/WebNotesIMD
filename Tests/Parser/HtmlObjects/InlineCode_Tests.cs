@@ -54,7 +54,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
-            Assert.AreEqual("<inline-code>text other text ", text);
+            Assert.AreEqual("<inline-code>text other text </inline-code>", text);
         }
     }
 }
