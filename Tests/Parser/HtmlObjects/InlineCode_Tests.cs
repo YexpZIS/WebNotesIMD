@@ -61,5 +61,16 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual("<inline-code>text other text </inline-code>", text);
         }
+
+        [Test]
+        public void NoInlineCode()
+        {
+            // Arrange
+            lines = new string[] { "text other text " };
+            // Act
+            text = _inlineCode.isHtmlObject(lines, 0, 0);
+            // Assert
+            Assert.AreEqual(null, text);
+        }
     }
 }

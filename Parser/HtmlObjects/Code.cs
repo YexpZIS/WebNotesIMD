@@ -26,7 +26,7 @@ namespace Parser.HtmlObjects
 
         public int GetIndex()
         {
-            return index;
+            return index - 1;
         }
 
         public string isHtmlObject(string[] Data, int index, int depth)

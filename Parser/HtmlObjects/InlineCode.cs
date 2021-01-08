@@ -27,7 +27,15 @@ namespace Parser.HtmlObjects
         public string isHtmlObject(string[] Data, int index, int depth)
         {
             this.index = index;
-            return _seeker.InsertTagsInLine(Data[index], _tag.tags[Tag.InlineCode][0], "````");
+
+            var result = _seeker.InsertTagsInLine(Data[index], _tag.tags[Tag.InlineCode][0], "````");
+
+            if (result == Data[index])
+            {
+                return null;
+            }
+
+            return result;
         }       
     }
 }
