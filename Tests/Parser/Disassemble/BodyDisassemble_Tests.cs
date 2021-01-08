@@ -47,6 +47,7 @@ namespace Tests.Parser.Disassemble
             _disassemble = _provider.GetService<IDisassemble>();
         }
 
+
         // is Html elements Work
 
         [Test]
@@ -71,6 +72,28 @@ namespace Tests.Parser.Disassemble
             Assert.AreEqual("C <inline-code>nano</inline-code> other texttext<br>\n", text);
         }
 
+        [Test]
+        public void isListItemWork()
+        {
+            // Arrange
+            lines = new string[] { "text", "head", "----", "body", "text", "----",  };
+            // Act
+            text = _disassemble.Disassemble(lines, 0);
+            // Assert
+            Assert.AreEqual("text<br>\n<card-head id=1>head</card-head>\n<text id=1>body<br>\n</text>\n<card-head id=2>text</card-head>\n<text id=2></text>\n", text);
+        }
+
+        [Test]
+        public void isTextWork()
+        {
+            // Arrange
+            lines = new string[] { "C nano other text", "text" };
+            // Act
+            text = _disassemble.Disassemble(lines, 0);
+            // Assert
+            Assert.AreEqual("C nano other text<br>\ntext<br>\n", text);
+        }
+
 
         // In Code block
 
@@ -83,7 +106,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines,0);
             // Assert
-            Assert.AreEqual("text<br>\n<code>code start<br>\n````inline code<br>\n</code>X <inline-code>1</inline-code> Y\nend", text);
+            Assert.AreEqual("text<br>\n<code>code start<br>\n````inline code<br>\n</code>\nX <inline-code>1</inline-code> Yend<br>\n", text);
         }
     }
 }

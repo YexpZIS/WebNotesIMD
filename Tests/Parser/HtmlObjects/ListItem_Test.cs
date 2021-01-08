@@ -60,6 +60,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "body\ntext"), text);
+            Assert.AreEqual(3, _item.GetIndex());
         }
 
 
@@ -68,10 +69,10 @@ namespace Tests.Parser.HtmlObjects
         public void WhenBetweenItems_NoLine()
         {
             // Arrange
-            _lines = new string[] { "head", "----", "body", "text", "----", "some text" };
+            _lines = new string[] { "head", "----",  "text", "----", "some text" };
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
-            mock.Setup(x => x.Disassemble(new string[] { "body", "text" }, 0)).Returns("body");
+            mock.Setup(x => x.Disassemble(new string[] {  "text" }, 0)).Returns("body");
             _item = new ListItem(mock.Object, _tag, _seeker);
 
             // Act
@@ -80,6 +81,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, ""), text);
+            Assert.AreEqual(1, _item.GetIndex());
         }
         [Test]
         public void WhenBetweenItems_OneLine()
@@ -97,6 +99,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "some text"), text);
+            Assert.AreEqual(2, _item.GetIndex());
         }
         
         [Test]
@@ -117,6 +120,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, result), text);
+            Assert.AreEqual(5, _item.GetIndex());
         }
 
 
@@ -138,6 +142,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "body OK"), text);
+            Assert.AreEqual(5, _item.GetIndex());
         }
 
         [Test]
@@ -156,6 +161,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "body OK"), text);
+            Assert.AreEqual(5, _item.GetIndex());
         }
 
         // First
@@ -176,6 +182,7 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "text") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "body OK"), text);
+            Assert.AreEqual(5, _item.GetIndex());
         }
 
         [Test]
@@ -194,6 +201,87 @@ namespace Tests.Parser.HtmlObjects
             // Assert
             Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "text") +
                 string.Format("<text id={0}>{1}</text>\n", 1, "body OK"), text);
+            Assert.AreEqual(5, _item.GetIndex());
+        }
+
+
+
+        [Test]
+        public void BlockHasNotHead()
+        {
+            // Arrange
+            _lines = new string[] {  "----", "body", "text" };
+
+            Mock<IDisassemble> mock = new Mock<IDisassemble>();
+            mock.Setup(x => x.Disassemble(new string[] { "body", "text" }, 0)).Returns("body\ntext");
+            _item = new ListItem(mock.Object, _tag, _seeker);
+            // Act
+            text = _item.isHtmlObject(_lines, 0, -1);
+            // Assert
+            Assert.AreEqual(null, text);
+            Assert.AreEqual(0, _item.GetIndex());
+        }
+
+        [Test]
+        public void BlockHasNotBody()
+        {
+            // Arrange
+            _lines = new string[] { "head", "----",  };
+
+            Mock<IDisassemble> mock = new Mock<IDisassemble>();
+            //mock.Setup(x => x.Disassemble(new string[] { "body", "text" }, 0)).Returns("body\ntext");
+            _item = new ListItem(mock.Object, _tag, _seeker);
+            // Act
+            text = _item.isHtmlObject(_lines, 0, -1);
+            // Assert
+            Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 1, "head") +
+                string.Format("<text id={0}>{1}</text>\n", 1, ""), text);
+            Assert.AreEqual(1, _item.GetIndex());
+        }
+
+
+        [Test]
+        public void isValuesAreCleanOnSecondUse()
+        {
+            // Arrange
+            _lines = new string[] { "head", "----", "\tbody", "\ttext", "\t----", "\tsome text", "\thead2", "\t----", "\tbody" };
+            string[] _lines_2 = new string[] { "SHey", "----", "YoW", "\ttext", "\t----", "\tsome text", "\thead2", "\t----", "\tbody" };
+
+            Mock<IDisassemble> mock = new Mock<IDisassemble>();
+            mock.Setup(x => x.Disassemble(new string[] { "\tsome text" }, 1)).Returns("body OK");
+            mock.Setup(x => x.Disassemble(new string[] { "YoW", "\ttext", "\t----", "\tsome text", "\thead2", "\t----", "\tbody" }, 0)).Returns("body OK 2");
+            _item = new ListItem(mock.Object, _tag, _seeker);
+
+            text = _item.isHtmlObject(_lines, 3, -1);
+            text = _item.isHtmlObject(_lines_2, 0, 1);
+            // Act
+
+            // Assert
+            Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 2, "SHey") +
+                string.Format("<text id={0}>{1}</text>\n", 2, "body OK 2"), text);
+            Assert.AreEqual(8, _item.GetIndex());
+        }
+
+        [Test]
+        public void isValuesAreCleanOnSecondUse_WhenHasNotBody()
+        {
+            // Arrange
+            _lines = new string[] { "head", "----", "\tbody", "\ttext", "\t----", "\tsome text", "\thead2", "\t----", "\tbody" };
+            string[] _lines_2 = new string[] { "SHey", "----" };
+
+            Mock<IDisassemble> mock = new Mock<IDisassemble>();
+            mock.Setup(x => x.Disassemble(new string[] { "\tsome text" }, 1)).Returns("body OK");
+            mock.Setup(x => x.Disassemble(new string[] {  }, 0)).Returns("body OK 2");
+            _item = new ListItem(mock.Object, _tag, _seeker);
+
+            text = _item.isHtmlObject(_lines, 3, -1);
+            text = _item.isHtmlObject(_lines_2, 0, 1);
+            // Act
+
+            // Assert
+            Assert.AreEqual(string.Format("<card-head id={0}>{1}</card-head>\n", 2, "SHey") +
+                string.Format("<text id={0}>{1}</text>\n", 2, "body OK 2"), text);
+            Assert.AreEqual(1, _item.GetIndex());
         }
     }
 

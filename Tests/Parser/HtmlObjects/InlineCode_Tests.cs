@@ -38,6 +38,7 @@ namespace Tests.Parser.HtmlObjects
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
             Assert.AreEqual("<inline-code>text</inline-code> other text", text);
+            Assert.AreEqual(0, _inlineCode.GetIndex());
         }
 
         [Test]
@@ -49,6 +50,7 @@ namespace Tests.Parser.HtmlObjects
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
             Assert.AreEqual("<inline-code>text</inline-code> other text <inline-code>x</inline-code>", text);
+            Assert.AreEqual(0, _inlineCode.GetIndex());
         }
 
         [Test]
@@ -60,6 +62,7 @@ namespace Tests.Parser.HtmlObjects
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
             Assert.AreEqual("<inline-code>text other text </inline-code>", text);
+            Assert.AreEqual(0, _inlineCode.GetIndex());
         }
 
         [Test]
@@ -71,6 +74,7 @@ namespace Tests.Parser.HtmlObjects
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
             Assert.AreEqual(null, text);
+            Assert.AreEqual(0, _inlineCode.GetIndex());
         }
     }
 }

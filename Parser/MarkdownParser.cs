@@ -46,7 +46,7 @@ namespace Parser
 
             var lines = new string[] { "Header","----",
             "Some text etxt ttt tt", " text ",
-            "\tc code", "\t ls -ahl","    sudo apt update", "text" };
+            "\tc code", "\t ls -ahl","    sudo apt update", "text" ,"----"};
 
             Console.WriteLine(text.Disassemble(lines,0));
             // for()

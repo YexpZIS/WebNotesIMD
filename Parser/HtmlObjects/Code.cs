@@ -17,6 +17,8 @@ namespace Parser.HtmlObjects
 
         private int _depth;
 
+        private int codeLenght = 0;
+
         public Code(ITag tag, Seeker seeker, Text text)
         {
             _tag = tag;
@@ -26,27 +28,33 @@ namespace Parser.HtmlObjects
 
         public int GetIndex()
         {
-            return index - 1;
+            return index;
         }
 
         public string isHtmlObject(string[] Data, int index, int depth)
         {
             code = null;
+            codeLenght = 0;
 
             for (int i = index; i < Data.Length; i++) 
             {
                 _depth = _seeker.GetDepth(Data[i]);
-                if (_seeker.GetDepth(Data[i]) > depth)
+                if (_depth > depth)
                 {
                     code += _text.isHtmlObject(Data, i, depth + 1);
+                    codeLenght++;
                 }
                 else
                 {
-                    this.index = i;
+                    this.index = index + codeLenght - 1;
+
                     break;
                 }
             }
-            
+
+            this.index = codeLenght == 0 ? index : index + codeLenght - 1;
+
+
             return GetHtml(code);
         }
 

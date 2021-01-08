@@ -65,7 +65,7 @@ namespace Parser.HtmlObjects
             index += 2; // Skip header and delimiter
             int end = _seeker.FindIndex(ref Data, index, nowDepth);
             var body =  Data.Skip(index).Take(end - index - 1).ToArray();
-            index = end;
+            index = end - 2;
             return body;
         }
 

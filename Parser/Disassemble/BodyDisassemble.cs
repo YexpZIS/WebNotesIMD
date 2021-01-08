@@ -25,6 +25,7 @@ namespace Parser.Disassemble
             InitHtmlObjects();
             _body = body;
             depth = nowDepth;
+            finalString = "";
 
             for (int i = 0; i < body.Length; i++)
             {
@@ -35,6 +36,7 @@ namespace Parser.Disassemble
 
         private void InitHtmlObjects()
         {
+            htmlObjects.Clear();
             htmlObjects.Add(_service.GetService<ListItem>());
             htmlObjects.Add(_service.GetService<Code>());
             htmlObjects.Add(_service.GetService<InlineCode>());

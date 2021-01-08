@@ -8,7 +8,6 @@ namespace Tests.Parser.HtmlObjects
 {
     class Text_Tests
     {
-        private ITag _tags;
         private Text _text;
 
         private string[] _lines;
@@ -38,6 +37,7 @@ namespace Tests.Parser.HtmlObjects
             text = _text.isHtmlObject(_lines, 0, -1);
             // Assert
             Assert.AreEqual("text<br>\n", text);
+            Assert.AreEqual(0, _text.GetIndex());
         }
 
 
@@ -50,6 +50,7 @@ namespace Tests.Parser.HtmlObjects
             text = _text.isHtmlObject(_lines, 0, 1);
             // Assert
             Assert.AreEqual("text<br>\n", text);
+            Assert.AreEqual(0, _text.GetIndex());
         }
 
         [Test]
@@ -61,6 +62,7 @@ namespace Tests.Parser.HtmlObjects
             text = _text.isHtmlObject(_lines, 0, 3);
             // Assert
             Assert.AreEqual("\ttext<br>\n", text);
+            Assert.AreEqual(0, _text.GetIndex());
         }
 
         [Test]
@@ -72,6 +74,7 @@ namespace Tests.Parser.HtmlObjects
             text = _text.isHtmlObject(_lines, 0, 3);
             // Assert
             Assert.AreEqual(" text<br>\n", text);
+            Assert.AreEqual(0, _text.GetIndex());
         }
 
         [Test]
@@ -83,6 +86,7 @@ namespace Tests.Parser.HtmlObjects
             text = _text.isHtmlObject(_lines, 0, 3);
             // Assert
             Assert.AreEqual("\t\ttext<br>\n", text);
+            Assert.AreEqual(0, _text.GetIndex());
         }
     }
 }
