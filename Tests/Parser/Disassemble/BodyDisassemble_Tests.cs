@@ -66,7 +66,7 @@ namespace Tests.Parser.Disassemble
         public void isInlineCodeWork()
         {
             // Arrange
-            lines = new string[] { "C ````nano```` other text", "text"};
+            lines = new string[] { "C `nano` other text", "text"};
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
@@ -92,7 +92,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("C nano other text<br>\n<br>\ntext text", text);
+            Assert.AreEqual("C nano other text<br>\ntext text", text);
         }
 
 
@@ -115,7 +115,7 @@ namespace Tests.Parser.Disassemble
         {
             // Arrange
             lines = new string[] { "text", 
-                "\tcode start", "\t````inline code", "X ````1```` Y", "end"};
+                "\tcode start", "\t````inline code", "X `1` Y", "end"};
             // Act
             text = _disassemble.Disassemble(lines,0);
             // Assert
@@ -208,8 +208,8 @@ namespace Tests.Parser.Disassemble
         public void CombinedTest_TwoListItem_OneCode_ThreeInlineCode_Text()
         {
             // Arrange
-            lines = new string[] { "head", "----", "body", "\tcode", "\tls -ahl" , "text ````wa```` g",
-                "head1", "----", "````body1````","text", "````inline_````" };
+            lines = new string[] { "head", "----", "body", "\tcode", "\tls -ahl" , "text `wa` g",
+                "head1", "----", "`body1`","text", "`inline_`" };
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert

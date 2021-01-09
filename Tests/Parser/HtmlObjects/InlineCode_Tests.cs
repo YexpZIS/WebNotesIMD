@@ -33,7 +33,7 @@ namespace Tests.Parser.HtmlObjects
         public void SimpleTest()
         {
             // Arrange
-            lines = new string[] { "````text```` other text"};
+            lines = new string[] { "`text` other text"};
             // Act
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
@@ -45,7 +45,7 @@ namespace Tests.Parser.HtmlObjects
         public void TwoInlineCodeInOneLine()
         {
             // Arrange
-            lines = new string[] { "````text```` other text ````x````" };
+            lines = new string[] { "`text` other text `x`" };
             // Act
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert
@@ -57,7 +57,7 @@ namespace Tests.Parser.HtmlObjects
         public void WhenInlineCodeAreNotClosed()
         {
             // Arrange
-            lines = new string[] { "````text other text " };
+            lines = new string[] { "`text other text " };
             // Act
             text = _inlineCode.isHtmlObject(lines, 0, 0);
             // Assert

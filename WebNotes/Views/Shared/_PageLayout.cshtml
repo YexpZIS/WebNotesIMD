@@ -35,8 +35,8 @@
 
             <div class="col-sm h-100">
                 <!--scroll-->
-                @Html.ActionLink("", "Get", "Page", new { page = "index.md" }, null);
-                <iframe id="page" src="/Page/Get?page=index.md">
+                <!--@Html.ActionLink("", "Get", "Page", new { page = "index.md" }, null);-->
+                <iframe id="page" src="/Page/Get?page=@ViewBag.Page">
                 </iframe>
             </div>
         </div>

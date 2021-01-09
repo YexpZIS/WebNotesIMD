@@ -42,5 +42,5 @@
 
 ```sdU``` = ```/mnt/sdX/mnt/backup.tar.bz2```
 
-		tar -cvzpf sdU --exclude=sdU *	
+	tar -cvzpf sdU --exclude=sdU *	
 

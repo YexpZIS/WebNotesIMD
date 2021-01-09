@@ -28,7 +28,7 @@ namespace Parser.HtmlObjects
         {
             this.index = index;
 
-            var result = _seeker.InsertTagsInLine(Data[index], _tag.tags[Tag.InlineCode][0], "````");
+            var result = _seeker.InsertTagsInLine(Data[index], _tag.tags[Tag.InlineCode][0], "`");
 
             if (result == Data[index])
             {

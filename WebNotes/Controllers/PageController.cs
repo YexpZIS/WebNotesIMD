@@ -17,8 +17,9 @@ namespace WebNotes.Controllers
             _parser = parser;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string page = "index.md")
         {
+            ViewBag.Page = page;
             return View("TableOfContents");
         }
 
