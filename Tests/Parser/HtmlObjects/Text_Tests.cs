@@ -36,7 +36,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _text.isHtmlObject(_lines, 0, -1);
             // Assert
-            Assert.AreEqual("text<br>\n", text);
+            Assert.AreEqual("text", text);
             Assert.AreEqual(0, _text.GetIndex());
         }
 
@@ -49,7 +49,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _text.isHtmlObject(_lines, 0, 1);
             // Assert
-            Assert.AreEqual("text<br>\n", text);
+            Assert.AreEqual("text", text);
             Assert.AreEqual(0, _text.GetIndex());
         }
 
@@ -61,7 +61,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _text.isHtmlObject(_lines, 0, 3);
             // Assert
-            Assert.AreEqual("\ttext<br>\n", text);
+            Assert.AreEqual("\ttext", text);
             Assert.AreEqual(0, _text.GetIndex());
         }
 
@@ -73,7 +73,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _text.isHtmlObject(_lines, 0, 3);
             // Assert
-            Assert.AreEqual(" text<br>\n", text);
+            Assert.AreEqual(" text", text);
             Assert.AreEqual(0, _text.GetIndex());
         }
 
@@ -85,8 +85,19 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _text.isHtmlObject(_lines, 0, 3);
             // Assert
-            Assert.AreEqual("\t\ttext<br>\n", text);
+            Assert.AreEqual("\t\ttext", text);
             Assert.AreEqual(0, _text.GetIndex());
+        }
+
+        [Test]
+        public void ReturnDelimiterWhenStringEmpty()
+        {
+            // Arrange
+            _lines = new string[] { "" };
+            // Act
+            text = _text.isHtmlObject(_lines, 0, 0);
+            // Assert
+            Assert.AreEqual("<br>\n", text);
         }
     }
 }

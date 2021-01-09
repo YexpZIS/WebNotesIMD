@@ -59,7 +59,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("<code>nano other text<br>\ntext<br>\n</code>\nnot code<br>\n", text);
+            Assert.AreEqual("<code>nano other text\ntext</code>\nnot code", text);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("C <inline-code>nano</inline-code> other text<br>\ntext<br>\n", text);
+            Assert.AreEqual("C <inline-code>nano</inline-code> other texttext", text);
         }
 
         [Test]
@@ -81,18 +81,18 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("text<br>\n<card-head id=1>head</card-head>\n<text id=1>body<br>\n</text>\n<card-head id=2>text</card-head>\n<text id=2></text>\n", text);
+            Assert.AreEqual("text<card-head id=1>head</card-head>\n<text id=1>body</text>\n<card-head id=2>text</card-head>\n<text id=2></text>\n", text);
         }
 
         [Test]
         public void isTextWork()
         {
             // Arrange
-            lines = new string[] { "C nano other text", "text" };
+            lines = new string[] { "C nano other text", "", "", "text ", "text" };
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("C nano other text<br>\ntext<br>\n", text);
+            Assert.AreEqual("C nano other text<br>\n<br>\ntext text", text);
         }
 
 
@@ -107,7 +107,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("text<br>\n<code>code start<br>\n\tinline code<br>\n</code>\ntext<br>\nend<br>\n", text);
+            Assert.AreEqual("text<code>code start\n\tinline code</code>\ntextend", text);
         }
 
         [Test]
@@ -119,7 +119,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines,0);
             // Assert
-            Assert.AreEqual("text<br>\n<code>code start<br>\n````inline code<br>\n</code>\nX <inline-code>1</inline-code> Y<br>\nend<br>\n", text);
+            Assert.AreEqual("text<code>code start\n````inline code</code>\nX <inline-code>1</inline-code> Yend", text);
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("<code>text<br>\ncode start<br>\n----<br>\ntext<br>\n</code>\nend<br>\n", text);
+            Assert.AreEqual("<code>text\ncode start\n----\ntext</code>\nend", text);
         }
 
         [Test]
@@ -143,7 +143,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("<code>text<br>\ncode start<br>\nW<br>\ntext<br>\n</code>\nend<br>\n", text);
+            Assert.AreEqual("<code>text\ncode start\nW\ntext</code>\nend", text);
         }
 
 
@@ -157,9 +157,9 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("<card-head id=1>head</card-head>\n<text id=1>body<br>\n</text>\n" +
-                "<card-head id=2>head1</card-head>\n<text id=2>body1<br>\n</text>\n" +
-                "<card-head id=3>head2</card-head>\n<text id=3>body2<br>\n</text>\n", text);
+            Assert.AreEqual("<card-head id=1>head</card-head>\n<text id=1>body</text>\n" +
+                "<card-head id=2>head1</card-head>\n<text id=2>body1</text>\n" +
+                "<card-head id=3>head2</card-head>\n<text id=3>body2</text>\n", text);
         }
 
         [Test]
@@ -172,20 +172,20 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual(string.Format("<card-head id=4>head</card-head>\n<text id=4>body<br>\n{0}</text>\n",
-                "<card-head id=1>sub-head</card-head>\n<text id=1>sub-body<br>\n</text>\n" +
-                "<card-head id=2>sub-head1</card-head>\n<text id=2>sub-body1<br>\n</text>\n"+
-                "<card-head id=3>sub-head2</card-head>\n<text id=3>sub-body2<br>\n</text>\n") +
+            Assert.AreEqual(string.Format("<card-head id=4>head</card-head>\n<text id=4>body{0}</text>\n",
+                "<card-head id=1>sub-head</card-head>\n<text id=1>sub-body</text>\n" +
+                "<card-head id=2>sub-head1</card-head>\n<text id=2>sub-body1</text>\n"+
+                "<card-head id=3>sub-head2</card-head>\n<text id=3>sub-body2</text>\n") +
 
-                string.Format("<card-head id=8>head1</card-head>\n<text id=8>body1<br>\n{0}</text>\n",
-                "<card-head id=5>sub-head</card-head>\n<text id=5>sub-body<br>\n</text>\n" +
-                "<card-head id=6>sub-head1</card-head>\n<text id=6>sub-body1<br>\n</text>\n" +
-                "<card-head id=7>sub-head2</card-head>\n<text id=7>sub-body2<br>\n</text>\n") +
+                string.Format("<card-head id=8>head1</card-head>\n<text id=8>body1{0}</text>\n",
+                "<card-head id=5>sub-head</card-head>\n<text id=5>sub-body</text>\n" +
+                "<card-head id=6>sub-head1</card-head>\n<text id=6>sub-body1</text>\n" +
+                "<card-head id=7>sub-head2</card-head>\n<text id=7>sub-body2</text>\n") +
 
-                string.Format("<card-head id=12>head2</card-head>\n<text id=12>body2<br>\n{0}</text>\n",
-                "<card-head id=9>sub-head</card-head>\n<text id=9>sub-body<br>\n</text>\n" +
-                "<card-head id=10>sub-head1</card-head>\n<text id=10>sub-body1<br>\n</text>\n" +
-                "<card-head id=11>sub-head2</card-head>\n<text id=11>sub-body2<br>\n</text>\n"), text);
+                string.Format("<card-head id=12>head2</card-head>\n<text id=12>body2{0}</text>\n",
+                "<card-head id=9>sub-head</card-head>\n<text id=9>sub-body</text>\n" +
+                "<card-head id=10>sub-head1</card-head>\n<text id=10>sub-body1</text>\n" +
+                "<card-head id=11>sub-head2</card-head>\n<text id=11>sub-body2</text>\n"), text);
         }
 
         [Test]
@@ -196,9 +196,9 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual(string.Format("<card-head id=3>head</card-head>\n<text id=3>body<br>\n{0}</text>\n",
-                string.Format("<card-head id=2>head1</card-head>\n<text id=2>body1<br>\n{0}</text>\n",
-                "<card-head id=1>head2</card-head>\n<text id=1>body2<br>\n</text>\n")) 
+            Assert.AreEqual(string.Format("<card-head id=3>head</card-head>\n<text id=3>body{0}</text>\n",
+                string.Format("<card-head id=2>head1</card-head>\n<text id=2>body1{0}</text>\n",
+                "<card-head id=1>head2</card-head>\n<text id=1>body2</text>\n")) 
                 , text);
         }
 
@@ -208,12 +208,15 @@ namespace Tests.Parser.Disassemble
         public void CombinedTest_TwoListItem_OneCode_ThreeInlineCode_Text()
         {
             // Arrange
-            lines = new string[] { "head", "----", "body", "\tcode", "\tls -ahl" , "text ````wa```` g", "head1", "----", "````body1````","text", "````inline_````" };
+            lines = new string[] { "head", "----", "body", "\tcode", "\tls -ahl" , "text ````wa```` g",
+                "head1", "----", "````body1````","text", "````inline_````" };
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual(string.Format("<card-head id=1>head</card-head>\n<text id=1>body<br>\n{0}</text>\n",
-                "<code>code<br>\nls -ahl<br>\n</code>\n" + "text <inline-code>wa</inline-code> g<br>\n")
+            Assert.AreEqual(string.Format("<card-head id=1>head</card-head>\n<text id=1>body{0}</text>\n",
+                "<code>code\nls -ahl</code>\n" + "text <inline-code>wa</inline-code> g") +
+                string.Format("<card-head id=2>head1</card-head>\n<text id=2><inline-code>body1</inline-code>{0}</text>\n",
+                "text<inline-code>inline_</inline-code>")
                 , text);
         }
 

@@ -38,7 +38,7 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _code.isHtmlObject(lines, 0, 0);
             // Assert
-            Assert.AreEqual("<code><br>\ncode<br>\n<br>\n</code>\n", text);
+            Assert.AreEqual("<code>\ncode\n</code>\n", text);
             Assert.AreEqual(2, _code.GetIndex());
         }
 
@@ -63,8 +63,8 @@ namespace Tests.Parser.HtmlObjects
             text = _code.isHtmlObject(lines, 0, 0);
             // Assert
             Assert.AreEqual("<code>" +
-                string.Join("<br>\n", new string[] { "echo 'text'", "", "ls -ahl" }) + 
-                "<br>\n</code>\n", text);
+                string.Join("\n", new string[] { "echo 'text'", "", "ls -ahl" }) + 
+                "</code>\n", text);
             Assert.AreEqual(2, _code.GetIndex());
         }
 
@@ -77,8 +77,8 @@ namespace Tests.Parser.HtmlObjects
             text = _code.isHtmlObject(lines, 1, 0);
             // Assert
             Assert.AreEqual("<code>" +
-                string.Join("<br>\n", new string[] { "\t\t", "ls -ahl" }) +
-                "<br>\n</code>\n", text);
+                string.Join("\n", new string[] { "\t\t", "ls -ahl" }) +
+                "</code>\n", text);
             Assert.AreEqual(2, _code.GetIndex());
         }
 
@@ -91,8 +91,8 @@ namespace Tests.Parser.HtmlObjects
             text = _code.isHtmlObject(lines, 0, 0);
             // Assert
             Assert.AreEqual("<code>" +
-                string.Join("<br>\n", new string[] { "echo 'text'", "    \t" }) +
-                "<br>\n</code>\n", text);
+                string.Join("\n", new string[] { "echo 'text'", "    \t" }) +
+                "</code>\n", text);
             Assert.AreEqual(1, _code.GetIndex());
         }
     }

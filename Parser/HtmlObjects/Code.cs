@@ -10,20 +10,19 @@ namespace Parser.HtmlObjects
     {
         private ITag _tag;
         private Seeker _seeker;
-        private Text _text;
 
         private string code;
         private int index;
 
         private int _depth;
 
-        private int codeLenght = 0;
+        private List<string> tmpCode;
 
-        public Code(ITag tag, Seeker seeker, Text text)
+        public Code(ITag tag, Seeker seeker)
         {
             _tag = tag;
             _seeker = seeker;
-            _text = text;
+            tmpCode = new List<string>();
         }
 
         public int GetIndex()
@@ -33,34 +32,37 @@ namespace Parser.HtmlObjects
 
         public string isHtmlObject(string[] Data, int index, int depth)
         {
-            code = null;
-            codeLenght = 0;
+            ClearLocalValues();
 
             for (int i = index; i < Data.Length; i++) 
             {
                 _depth = _seeker.GetDepth(Data[i]);
                 if (_depth > depth)
                 {
-                    code += _text.isHtmlObject(Data, i, depth + 1);
-                    codeLenght++;
+                    tmpCode.Add(_seeker.RemovePrefix(Data[i], depth + 1));
                 }
                 else
                 {
-                    this.index = index + codeLenght - 1;
-
                     break;
                 }
             }
 
-            this.index = codeLenght == 0 ? index : index + codeLenght - 1;
+            code = string.Join("\n", tmpCode);
+            this.index = index + (tmpCode.Count == 0 ? 0 : tmpCode.Count - 1);
 
 
             return GetHtml(code);
         }
+        
+        private void ClearLocalValues()
+        {
+            code = null;
+            tmpCode.Clear();
+        }
 
         public string GetHtml(string code)
         {
-            if (code == null)
+            if (tmpCode.Count == 0)
             {
                 return null;
             }

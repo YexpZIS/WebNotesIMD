@@ -27,7 +27,15 @@ namespace Parser.HtmlObjects
         public string isHtmlObject(string[] Data, int index, int depth)
         {
             this.index = index;
-            return string.Format(_tag.tags[Tag.Text][0], _seeker.RemovePrefix(Data[index], depth));
+
+            string clearText = _seeker.RemovePrefix(Data[index], depth);
+
+            if (clearText == "") 
+            {
+                return "<br>\n";
+            }
+
+            return string.Format(_tag.tags[Tag.Text][0], clearText);
         }
     }
 }
