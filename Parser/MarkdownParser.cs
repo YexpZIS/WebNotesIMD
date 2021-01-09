@@ -42,8 +42,8 @@ namespace Parser
         public string ParsePage(string fileName)
         {
             var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() +
-                "/source/TestBook/" + fileName);
-            /*/bin/Debug/netcoreapp3.1*/
+                "/bin/Debug/netcoreapp3.1/source/TestBook/" + fileName);
+            
             var text = serviceProvider.GetService<IDisassemble>();
 
             /*var lines = new string[] { "Header","----",
