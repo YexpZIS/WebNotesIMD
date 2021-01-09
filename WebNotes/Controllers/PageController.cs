@@ -24,7 +24,7 @@ namespace WebNotes.Controllers
 
         public ActionResult TestPage()
         {
-            ViewBag["text"] = "<h2>H2</h2><br>text";
+            ViewBag.Html = _parser.ParsePage("index.md");
             return View("Content");
         }
 

@@ -39,7 +39,7 @@ html,body {
 
 pre{
     background-color:#f7f7f7;/*#f6f8fa;*/
-    padding: 5px;
+    /*padding: 5px;*/
 }
 .header {
     text-align: center;
@@ -85,14 +85,15 @@ tbody tr:nth-child(even) {
     padding-left:25px;
 }
 
-.code pre{
-    font-family: monospace;
-    padding: 10;
-    margin: 5 0;
-    display: block;
-    color:#000000c2;
-    background-color:#f0f0f0;
-    border-radius: 10px;
+.code pre {
+    font-family: monospace !important;
+    padding: 10px !important;
+    margin: 5px 0px !important;
+    display: block !important;
+    color: #000000c2 !important;
+    background-color: #f0f0f0 !important;
+    border-radius: 10px !important;
+    font-size: 100%;
 }
 .inline-code{
     font-family: monospace;

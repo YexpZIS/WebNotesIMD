@@ -26,14 +26,16 @@ namespace Parser.HtmlObjects
 
         public string isHtmlObject(string[] Data, int index, int depth)
         {
-            this.index = index;
+            // this.index = index;
 
             string clearText = _seeker.RemovePrefix(Data[index], depth);
 
-            if (clearText == "") 
+            if (clearText == "" && this.index + 1 != index && Data.Length - 1 != index) 
             {
+                this.index = index;
                 return "<br>\n";
             }
+            this.index = index;
 
             return string.Format(_tag.tags[Tag.Text][0], clearText);
         }

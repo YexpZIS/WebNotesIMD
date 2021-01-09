@@ -5,4 +5,10 @@
     Layout = "_PageLayout";
 }
 
-@ViewBag["text"]
+@section PageContent{
+    <div class="cus_body">
+        <div id="accordion_chapters" class="mt-3">
+            @Html.Raw(@ViewBag.Html)
+        </div>
+    </div>
+}
