@@ -9,7 +9,7 @@ using Parser.Tags;
 
 namespace Parser
 {
-    class MarkdownParser
+    public class MarkdownParser
     {
         public static ServiceProvider serviceProvider { get; set; }
 
@@ -52,11 +52,11 @@ namespace Parser
                 "head1", "----", "body1", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
                 "head2", "----", "body2", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2"};
 
-            Console.WriteLine(text.Disassemble(lines,0));
+            //Console.WriteLine(text.Disassemble(lines,0));
             // for()
             //text = new BodyDisassemble(ref tags, ref lines).Disassemble(0);
 
-            return "";
+            return text.Disassemble(lines, 0);
         }
 
         public string ParseTableOfContents(string tableOfContents)

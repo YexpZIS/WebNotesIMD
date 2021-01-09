@@ -22,9 +22,10 @@ namespace Parser.Disassemble
 
         public string Disassemble(string[] body, int nowDepth)
         {
-            InitHtmlObjects();
             _body = body;
             depth = nowDepth;
+
+            InitHtmlObjects();
             finalString = "";
 
             for (int i = 0; i < body.Length; i++)

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "81mOQd6ZXe/Y9woRchv/zQlFZqJ/d8+F6lfq+lR+6YUfYVbGqFkukSpTmj7igUWwu1VT6orfIPqC78aeRh4cWg==",
+  "success": true,
+  "projectFilePath": "E:\\Projects\\C#\\2021\\MDParser\\WebNotes\\WebNotes.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Den\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\Den\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

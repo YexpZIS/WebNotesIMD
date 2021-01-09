@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "Parser\Parser.csproj", "{38815E65-811F-4539-B097-C55275167A40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser", "Parser\Parser.csproj", "{38815E65-811F-4539-B097-C55275167A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{42AD14DC-3B45-4FC2-9CC9-4E5B77A45F13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{42AD14DC-3B45-4FC2-9CC9-4E5B77A45F13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebNotes", "WebNotes\WebNotes.csproj", "{6166ECFF-2CD8-413F-9C1F-05837AB67544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{42AD14DC-3B45-4FC2-9CC9-4E5B77A45F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42AD14DC-3B45-4FC2-9CC9-4E5B77A45F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42AD14DC-3B45-4FC2-9CC9-4E5B77A45F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6166ECFF-2CD8-413F-9C1F-05837AB67544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6166ECFF-2CD8-413F-9C1F-05837AB67544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6166ECFF-2CD8-413F-9C1F-05837AB67544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6166ECFF-2CD8-413F-9C1F-05837AB67544}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
