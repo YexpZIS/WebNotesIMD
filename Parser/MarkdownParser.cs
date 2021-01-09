@@ -41,26 +41,32 @@ namespace Parser
 
         public string ParsePage(string fileName)
         {
-            var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() +
-                "/bin/Debug/netcoreapp3.1/source/TestBook/" + fileName);
-            
-            var text = serviceProvider.GetService<IDisassemble>();
+            string html = "Errore";
+            try
+            {
+                var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() +
+                    "/bin/Debug/netcoreapp3.1/source/TestBook/" + fileName);
 
-            /*var lines = new string[] { "Header","----",
-            "Some text etxt ttt tt", " text ",
-            "\tc code", "\t ls -ahl","    sudo apt update", "text0",
-                "text" ,"----","body", "\theader1", "\t----", "\tbobyX"};
+                var text = serviceProvider.GetService<IDisassemble>();
 
-            /*lines = new string[] { "head", "----", "body", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
-                "head1", "----", "body1", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
-                "head2", "----", "body2", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2"};
-            */
+                /*var lines = new string[] { "Header","----",
+                "Some text etxt ttt tt", " text ",
+                "\tc code", "\t ls -ahl","    sudo apt update", "text0",
+                    "text" ,"----","body", "\theader1", "\t----", "\tbobyX"};
 
-            //Console.WriteLine(text.Disassemble(lines,0));
-            // for()
-            //text = new BodyDisassemble(ref tags, ref lines).Disassemble(0);
+                /*lines = new string[] { "head", "----", "body", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
+                    "head1", "----", "body1", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2",
+                    "head2", "----", "body2", "\tsub-head" ,"\t----", "\tsub-body", "\tsub-head1" ,"\t----", "\tsub-body1", "\tsub-head2" ,"\t----", "\tsub-body2"};
+                */
 
-            return text.Disassemble(lines, 0);
+                //Console.WriteLine(text.Disassemble(lines,0));
+                // for()
+                //text = new BodyDisassemble(ref tags, ref lines).Disassemble(0);
+
+                html = text.Disassemble(lines, 0);
+            }
+            catch { }
+            return html;
         }
 
         public string ParseTableOfContents(string tableOfContents)

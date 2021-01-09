@@ -29,18 +29,17 @@ namespace WebNotes.Controllers
         }
 
         [HttpGet]
-        public ContentResult Get(string page)
+        public ActionResult Get(string page = "index.md")
         {
-            if (page == null)
-            {
-                return base.Content("Unknown page","text/html");
-            }
-
-            
-
-            return base.Content(_parser.ParsePage(page), "text/html");
+            ViewBag.Html = _parser.ParsePage(page);
+            return View("Content");
         }
 
+        /*[HttpGet]
+        public ContentResult Get(string page = "index.md")
+        {
+            base.Content("<h1>Tag</h1>text", "text/html");
+        }*/
 
-    }
+     }
 }
