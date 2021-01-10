@@ -49,8 +49,7 @@ namespace Parser
             string html = "Errore";
             try
             {
-                var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() +
-                    "/bin/Debug/netcoreapp3.1/source/" + fileName);
+                var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() + fileName);
 
                 var parser = serviceProvider.GetService<IDisassemble>();
 
