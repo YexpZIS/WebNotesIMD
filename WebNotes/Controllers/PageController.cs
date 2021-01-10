@@ -17,22 +17,23 @@ namespace WebNotes.Controllers
             _parser = parser;
         }
 
-        public ActionResult Index(string page = "index.md")
+        public ActionResult Index(string book ,string page = "index.md")
         {
+            ViewBag.Book = book;
             ViewBag.Page = page;
             return View("TableOfContents");
         }
 
-        public ActionResult TestPage()
+        /*public ActionResult TestPage()
         {
             ViewBag.Html = _parser.ParsePage("index.md");
             return View("Content");
-        }
+        }*/
 
         [HttpGet]
-        public ActionResult Get(string page = "index.md")
+        public ActionResult Get(string book, string page = "index.md")
         {
-            ViewBag.Html = _parser.ParsePage(page);
+            ViewBag.Html = _parser.ParsePage($"{book}/{page}");
             return View("Content");
         }
 

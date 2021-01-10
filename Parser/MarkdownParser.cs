@@ -50,9 +50,9 @@ namespace Parser
             try
             {
                 var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() +
-                    "/bin/Debug/netcoreapp3.1/source/TestBook/" + fileName);
+                    "/bin/Debug/netcoreapp3.1/source/" + fileName);
 
-                var text = serviceProvider.GetService<IDisassemble>();
+                var parser = serviceProvider.GetService<IDisassemble>();
 
                 /*var lines = new string[] { "Header","----",
                 "Some text etxt ttt tt", " text ",
@@ -67,7 +67,7 @@ namespace Parser
                 //Console.WriteLine(text.Disassemble(lines,0));
                 // for()
                 //text = new BodyDisassemble(ref tags, ref lines).Disassemble(0);
-                html = text.Disassemble(lines, 0);
+                html = parser.Disassemble(lines, 0);
                 
             }
             catch { }
