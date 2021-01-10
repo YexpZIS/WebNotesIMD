@@ -6,34 +6,20 @@ using Parser.Helpers;
 
 namespace Tests.Parser.HtmlObjects
 {
-    class Text_Tests
+    class Text_Tests : IHtmlObject
     {
         private Text _text;
-
-        private string[] _lines;
-        private string text;
 
         [OneTimeSetUp]
         public void Init()
         {
-            ServiceCollection services = new ServiceCollection();
-            services.AddSingleton<IDepth, Depth>();
-            services.AddSingleton<Index>();
-            services.AddSingleton<LineModifier>();
-            services.AddSingleton<Seeker>();
-            services.AddSingleton<ITag, TestTags>();
+            Create();
             services.AddSingleton<Text>();
-            var provider = services.BuildServiceProvider();
+            Build();
 
             _text = provider.GetService<Text>();
         }
 
-        [SetUp]
-        public void ClearValues()
-        {
-            _lines = null;
-            text = null;
-        }
 
         [Test]
         public void SimpleTest()

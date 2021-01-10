@@ -8,29 +8,16 @@ namespace Parser.HtmlObjects
 {
     public class Code : IHtmlObject
     {
-        private ITag _tag;
-        private Seeker _seeker;
-
         private string code;
-        private int index;
-
         private int _depth;
-
         private List<string> tmpCode;
 
-        public Code(ITag tag, Seeker seeker)
+        public Code(ITag tags, Seeker seeker) : base(tags, seeker)
         {
-            _tag = tag;
-            _seeker = seeker;
             tmpCode = new List<string>();
         }
 
-        public int GetIndex()
-        {
-            return index;
-        }
-
-        public string isHtmlObject(string[] Data, int index, int depth)
+        public override string isHtmlObject(string[] Data, int index, int depth)
         {
             ClearLocalValues();
 
@@ -67,7 +54,7 @@ namespace Parser.HtmlObjects
                 return null;
             }
 
-            return string.Format(_tag.tags[Tag.Code][0], code);
+            return string.Format(_tags.tags[Tag.Code][0], code);
         }
     }
 }

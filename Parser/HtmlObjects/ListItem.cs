@@ -10,22 +10,17 @@ namespace Parser.HtmlObjects
 {
     public class ListItem : IHtmlObject
     {
-        private ITag _tags;
         private IDisassemble _body;
-        private Seeker _seeker;
 
         private int nowDepth = 0;
-        private int index = 0;
         private string[] Data;
 
-        public ListItem(IDisassemble disassemble,ITag tag, Seeker seeker)
+        public ListItem(IDisassemble disassemble,ITag tags, Seeker seeker) : base(tags, seeker)
         {
             _body = disassemble;
-            _tags = tag;
-            _seeker = seeker;
         }
 
-        public string isHtmlObject(string[] Data, int index, int depth)
+        public override string isHtmlObject(string[] Data, int index, int depth)
         {
             this.index = index;
             this.Data = Data;
@@ -68,12 +63,6 @@ namespace Parser.HtmlObjects
             index = end - 2;
             return body;
         }
-
-        public int GetIndex()
-        {
-            return index;
-        }
-
 
         public string GetHtml(string head, string body)
         {

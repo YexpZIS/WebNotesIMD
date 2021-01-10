@@ -6,26 +6,17 @@ using Parser.Tags;
 
 namespace Tests.Parser.HtmlObjects
 {
-    class Code_Tests
+    class Code_Tests : IHtmlObject
     {
         private Code _code;
-
-        private string[] lines;
-        private string text;
 
         [OneTimeSetUp]
         public void Init()
         {
-            ServiceCollection services = new ServiceCollection();
-            services.AddSingleton<IDepth, Depth>();
-            services.AddSingleton<Index>();
-            services.AddSingleton<LineModifier>();
-            services.AddSingleton<Seeker>();
-            services.AddSingleton<ITag, TestTags>();
+            Create();
             services.AddScoped<Text>();
             services.AddScoped<Code>();
-
-            var provider = services.BuildServiceProvider();
+            Build();
 
             _code = provider.GetService<Code>();
         }
@@ -34,9 +25,9 @@ namespace Tests.Parser.HtmlObjects
         public void SimpleTest()
         {
             // Arrange
-            lines = new string[] { "\t", "\tcode", "\t" };
+            _lines = new string[] { "\t", "\tcode", "\t" };
             // Act
-            text = _code.isHtmlObject(lines, 0, 0);
+            text = _code.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<code>\ncode\n</code>\n", text);
             Assert.AreEqual(2, _code.GetIndex());
@@ -46,9 +37,9 @@ namespace Tests.Parser.HtmlObjects
         public void NoCode()
         {
             // Arrange
-            lines = new string[] { "\t", "code", "\t" };
+            _lines = new string[] { "\t", "code", "\t" };
             // Act
-            text = _code.isHtmlObject(lines, 1, 0);
+            text = _code.isHtmlObject(_lines, 1, 0);
             // Assert
             Assert.AreEqual(null, text);
             Assert.AreEqual(1, _code.GetIndex());
@@ -58,9 +49,9 @@ namespace Tests.Parser.HtmlObjects
         public void SpaceBetweenTwoBlocksOfCode()
         {
             // Arrange
-            lines = new string[] { "\techo 'text'", "\t", "\tls -ahl" ,"" ,"\trm -rf"};
+            _lines = new string[] { "\techo 'text'", "\t", "\tls -ahl" ,"" ,"\trm -rf"};
             // Act
-            text = _code.isHtmlObject(lines, 0, 0);
+            text = _code.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<code>" +
                 string.Join("\n", new string[] { "echo 'text'", "", "ls -ahl" }) + 
@@ -72,9 +63,9 @@ namespace Tests.Parser.HtmlObjects
         public void RemoveSomeTabs()
         {
             // Arrange
-            lines = new string[] { "\t\techo 'text'", "\t\t\t", "\tls -ahl", "", "\trm -rf" };
+            _lines = new string[] { "\t\techo 'text'", "\t\t\t", "\tls -ahl", "", "\trm -rf" };
             // Act
-            text = _code.isHtmlObject(lines, 1, 0);
+            text = _code.isHtmlObject(_lines, 1, 0);
             // Assert
             Assert.AreEqual("<code>" +
                 string.Join("\n", new string[] { "\t\t", "ls -ahl" }) +
@@ -86,9 +77,9 @@ namespace Tests.Parser.HtmlObjects
         public void FourSpacesInsteadOneTab()
         {
             // Arrange
-            lines = new string[] { "    echo 'text'", "        \t", "ls -ahl", "", "\trm -rf" };
+            _lines = new string[] { "    echo 'text'", "        \t", "ls -ahl", "", "\trm -rf" };
             // Act
-            text = _code.isHtmlObject(lines, 0, 0);
+            text = _code.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<code>" +
                 string.Join("\n", new string[] { "echo 'text'", "    \t" }) +

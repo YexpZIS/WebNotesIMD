@@ -19,7 +19,7 @@ namespace Parser
             var services = new ServiceCollection();
 
             // Disassemble
-            services.AddTransient<IDisassemble, BodyDisassemble>();
+            services.AddTransient<IDisassemble, BodyDisassemble>(); // Transient
 
             // Helpers
             services.AddSingleton<IDepth,Depth>();
@@ -28,7 +28,8 @@ namespace Parser
             services.AddSingleton<Seeker>();
 
             // HtmlObjects
-            services.AddTransient<ListItem>();
+            services.AddSingleton<Head>();
+            services.AddTransient<ListItem>(); // Transient
             services.AddSingleton<Code>();
             services.AddSingleton<InlineCode>();
             services.AddSingleton<Text>();

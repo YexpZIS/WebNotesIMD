@@ -9,27 +9,19 @@ using Moq;
 
 namespace Tests.Parser.HtmlObjects
 {
-    class ListItem_Test
+    class ListItem_Test : IHtmlObject
     {
         private ListItem _item;
 
         private ITag _tag;
         private Seeker _seeker;
 
-        private string[] _lines;
-        private string text;
-
         [OneTimeSetUp]
         public void Init()
         {
-            ServiceCollection services = new ServiceCollection();
-            services.AddSingleton<IDepth, Depth>();
-            services.AddSingleton<Index>();
-            services.AddSingleton<LineModifier>();
-            services.AddSingleton<Seeker>();
-            services.AddSingleton<ITag, TestTags>();
+            Create();
 
-            var provider = services.BuildServiceProvider();
+            Build();
 
             _tag = provider.GetService<ITag>();
             _seeker = provider.GetService<Seeker>();

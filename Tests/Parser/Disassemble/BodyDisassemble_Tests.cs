@@ -30,6 +30,7 @@ namespace Tests.Parser.Disassemble
             services.AddSingleton<Seeker>();
 
             // HtmlObjects
+            services.AddSingleton<Head>();
             services.AddTransient<ListItem>();
             services.AddSingleton<Code>();
             services.AddSingleton<InlineCode>();
@@ -60,6 +61,17 @@ namespace Tests.Parser.Disassemble
             text = _disassemble.Disassemble(lines, 0);
             // Assert
             Assert.AreEqual("<code>nano other text\ntext</code>\nnot code", text);
+        }
+
+        [Test]
+        public void isHeadWork()
+        {
+            // Arrange
+            lines = new string[] { "Head", "====", "tag, tag1" };
+            // Act
+            text = _disassemble.Disassemble(lines, 0);
+            // Assert
+            Assert.AreEqual("<head>Head</head>\n<tags>tag, tag1</tags>\n", text);
         }
 
         [Test]
@@ -218,6 +230,18 @@ namespace Tests.Parser.Disassemble
                 string.Format("<card-head id=2>head1</card-head>\n<text id=2><inline-code>body1</inline-code>{0}</text>\n",
                 "text<inline-code>inline_</inline-code>")
                 , text);
+        }
+
+        [Test]
+        public void CombinedTest_HeadWithListItem()
+        {
+            // Arrange
+            lines = new string[] { "Head", "(title)", "====", "tag, tag1", "(tags)", "Head", "----", "Body" };
+            // Act
+            text = _disassemble.Disassemble(lines, 0);
+            // Assert
+            Assert.AreEqual("<head>Head<br>\n(title)</head>\n<tags>tag, tag1<br>\n(tags)</tags>\n" +
+                "<card-head id=1>Head</card-head>\n<text id=1>Body</text>\n", text);
         }
 
     }

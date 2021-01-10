@@ -8,22 +8,27 @@ namespace Parser.Tags
     {
         public override Dictionary<Tag, string[]> tags { get; set; } = new Dictionary<Tag, string[]>()
         {
-            //{ Tag.Header, new string[]{ "<head>{0}</head>\n", "<tags>{0}</tags>\n"  } },
+            { Tag.Header, new string[]{ @"<div class='cus_body'>
+                    <div class='container-fluid'>
+                        <h1 class='text-center'>{0}</h1>
+                    </div>", @"<div class='search-tags'>
+                        {0}
+                    </div>" } },
             { Tag.ListItem,new string[]{ @"
-<div class='card'>
-    <div class='card-header' >
-        <h5 class='mb-0'>
-            <button class='select btn btn-link button-text-fix text-dark' data-toggle='collapse' data-target='#block{0}' aria-expanded='false'>
-                {1}
-            </button>
-        </h5>
-    </div>",
-               @"<div id='block{0}' class='collapse show' aria-labelledby='block{0}' data-parent='#accordion{0}'>
-        <div class='card-body'>
-            {1}
-        </div>
-    </div>
-</div>" } },
+                    <div class='card'>
+                        <div class='card-header' >
+                            <h5 class='mb-0'>
+                                <button class='select btn btn-link button-text-fix text-dark' data-toggle='collapse' data-target='#block{0}' aria-expanded='false'>
+                                    {1}
+                                </button>
+                            </h5>
+                        </div>",
+                                   @"<div id='block{0}' class='collapse show' aria-labelledby='block{0}' data-parent='#accordion{0}'>
+                            <div class='card-body'>
+                                {1}
+                            </div>
+                        </div>
+                    </div>" } },
             { Tag.Code, new string[]{ @"<div class='code'><pre>{0}</pre></div>" } },
             { Tag.InlineCode, new string[]{ "<div class='inline-code'>{0}</div>" } },
             /*{ Tag.Image, new string[]{ "<img>{0}</img>\n"} },

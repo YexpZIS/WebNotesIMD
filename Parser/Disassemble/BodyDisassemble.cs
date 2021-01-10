@@ -38,6 +38,7 @@ namespace Parser.Disassemble
         private void InitHtmlObjects()
         {
             htmlObjects.Clear();
+            htmlObjects.Add(_service.GetService<Head>());
             htmlObjects.Add(_service.GetService<ListItem>());
             htmlObjects.Add(_service.GetService<Code>());
             htmlObjects.Add(_service.GetService<InlineCode>());

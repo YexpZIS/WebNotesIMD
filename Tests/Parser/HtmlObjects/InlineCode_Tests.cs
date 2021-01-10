@@ -6,25 +6,16 @@ using Parser.Tags;
 
 namespace Tests.Parser.HtmlObjects
 {
-    class InlineCode_Tests
+    class InlineCode_Tests : IHtmlObject
     {
         private InlineCode _inlineCode;
-
-        private string[] lines;
-        private string text;
 
         [OneTimeSetUp]
         public void Init()
         {
-            ServiceCollection services = new ServiceCollection();
-            services.AddSingleton<IDepth, Depth>();
-            services.AddSingleton<Index>();
-            services.AddSingleton<LineModifier>();
-            services.AddSingleton<Seeker>();
-            services.AddSingleton<ITag, TestTags>();
+            Create();
             services.AddSingleton<InlineCode>();
-
-            var provider = services.BuildServiceProvider();
+            Build();
 
             _inlineCode = provider.GetService<InlineCode>();
         }
@@ -33,9 +24,9 @@ namespace Tests.Parser.HtmlObjects
         public void SimpleTest()
         {
             // Arrange
-            lines = new string[] { "`text` other text"};
+            _lines = new string[] { "`text` other text"};
             // Act
-            text = _inlineCode.isHtmlObject(lines, 0, 0);
+            text = _inlineCode.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<inline-code>text</inline-code> other text", text);
             Assert.AreEqual(0, _inlineCode.GetIndex());
@@ -45,9 +36,9 @@ namespace Tests.Parser.HtmlObjects
         public void TwoInlineCodeInOneLine()
         {
             // Arrange
-            lines = new string[] { "`text` other text `x`" };
+            _lines = new string[] { "`text` other text `x`" };
             // Act
-            text = _inlineCode.isHtmlObject(lines, 0, 0);
+            text = _inlineCode.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<inline-code>text</inline-code> other text <inline-code>x</inline-code>", text);
             Assert.AreEqual(0, _inlineCode.GetIndex());
@@ -57,9 +48,9 @@ namespace Tests.Parser.HtmlObjects
         public void WhenInlineCodeAreNotClosed()
         {
             // Arrange
-            lines = new string[] { "`text other text " };
+            _lines = new string[] { "`text other text " };
             // Act
-            text = _inlineCode.isHtmlObject(lines, 0, 0);
+            text = _inlineCode.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<inline-code>text other text </inline-code>", text);
             Assert.AreEqual(0, _inlineCode.GetIndex());
@@ -69,9 +60,9 @@ namespace Tests.Parser.HtmlObjects
         public void NoInlineCode()
         {
             // Arrange
-            lines = new string[] { "text other text " };
+            _lines = new string[] { "text other text " };
             // Act
-            text = _inlineCode.isHtmlObject(lines, 0, 0);
+            text = _inlineCode.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual(null, text);
             Assert.AreEqual(0, _inlineCode.GetIndex());
