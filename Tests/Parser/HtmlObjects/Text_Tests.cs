@@ -28,6 +28,13 @@ namespace Tests.Parser.HtmlObjects
             _text = provider.GetService<Text>();
         }
 
+        [SetUp]
+        public void ClearValues()
+        {
+            _lines = null;
+            text = null;
+        }
+
         [Test]
         public void SimpleTest()
         {
@@ -97,7 +104,57 @@ namespace Tests.Parser.HtmlObjects
             // Act
             text = _text.isHtmlObject(_lines, 0, 0);
             // Assert
-            Assert.AreEqual("<br>\n", text);
+            Assert.AreEqual("", text);
+        }
+
+        [Test]
+        public void OneSeparatorBetweenText()
+        {
+            // Arrange 
+            _lines = new string[] { "text", "", "text" };
+
+            // Act
+            for (int i = 0; i < _lines.Length; i++)
+            {
+                text += _text.isHtmlObject(_lines, i, 0);
+            }
+
+            // Assert
+            Assert.AreEqual("text<br>\ntext", text);
+        }
+
+        [Test]
+        public void TwoSeparatorBetweenText()
+        {
+            // Arrange 
+            _lines = new string[] {"text", "", "", "text" };
+
+            // Act
+            for (int i = 0; i < _lines.Length; i++) 
+            {
+                text += _text.isHtmlObject(_lines, i, 0);
+                i = _text.GetIndex();
+            }
+
+            // Assert
+            Assert.AreEqual("text<br>\n<br>\ntext", text);
+        }
+
+        [Test]
+        public void SeparatorsInText()
+        {
+            // Arrange 
+            _lines = new string[] { "","text", "", "", "text", "", "text","" };
+
+            // Act
+            for (int i = 0; i < _lines.Length; i++)
+            {
+                text += _text.isHtmlObject(_lines, i, 0);
+                i = _text.GetIndex();
+            }
+
+            // Assert
+            Assert.AreEqual("text<br>\n<br>\ntext<br>\ntext", text);
         }
     }
 }

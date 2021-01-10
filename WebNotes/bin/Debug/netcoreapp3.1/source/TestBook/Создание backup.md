@@ -10,7 +10,7 @@
 2. Примонтировать диски
 ----
 	mkdir /mnt/{sdX,sdY} # без пробелов
-
+	
 	mount /dev/sda2 /mnt/sdX # система
 	mount /dev/sdb4 /mnt/sdY # диск для сохранения backup
 

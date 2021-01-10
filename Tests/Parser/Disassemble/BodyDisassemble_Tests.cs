@@ -92,7 +92,7 @@ namespace Tests.Parser.Disassemble
             // Act
             text = _disassemble.Disassemble(lines, 0);
             // Assert
-            Assert.AreEqual("C nano other text<br>\ntext text", text);
+            Assert.AreEqual("C nano other text<br>\n<br>\ntext text", text);
         }
 
 

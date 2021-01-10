@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Parser.Disassemble;
@@ -41,6 +42,9 @@ namespace Parser
 
         public string ParsePage(string fileName)
         {
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
             string html = "Errore";
             try
             {
@@ -62,11 +66,13 @@ namespace Parser
                 //Console.WriteLine(text.Disassemble(lines,0));
                 // for()
                 //text = new BodyDisassemble(ref tags, ref lines).Disassemble(0);
-
                 html = text.Disassemble(lines, 0);
+                
             }
             catch { }
-            return html;
+
+            stopwatch.Stop();
+            return html + "<br>Milliseconds: " + stopwatch.ElapsedMilliseconds;
         }
 
         public string ParseTableOfContents(string tableOfContents)
