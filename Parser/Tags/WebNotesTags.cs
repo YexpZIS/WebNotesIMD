@@ -8,6 +8,9 @@ namespace Parser.Tags
     {
         public override Dictionary<Tag, string[]> tags { get; set; } = new Dictionary<Tag, string[]>()
         {
+            { Tag.Summary, new string[]{ @"<div id='menu_block{0}' class='collapse' aria-labelledby='menu_block{0}' data-parent='#accordion_menu{0}'>
+                <div class='card-body bg-light'>{1}</div>", "<div class='button-text-fix page'><button onclick='load('{1}','{2}');'>{0}</button></div>" } },
+
             { Tag.Header, new string[]{ @"<div class='cus_body'>
                     <div class='container-fluid'>
                         <h1 class='text-center'>{0}</h1>

@@ -5,59 +5,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Parser.Disassemble
 {
-    public class BodyDisassemble : IDisassemble
+    public class BodyDisassemble : AbsDisassemble
     {
-        private IServiceProvider _service;
-
-        private List<IHtmlObject> htmlObjects = new List<IHtmlObject>();
-
-        private string[] _body;
-        private string finalString = "";
-        private int depth = 0;
-
-        public BodyDisassemble(IServiceProvider service)
+        public BodyDisassemble(IServiceProvider provider) : base(provider)
         {
-            _service = service;
+
         }
 
-        public string Disassemble(string[] body, int nowDepth)
-        {
-            _body = body;
-            depth = nowDepth;
-
-            InitHtmlObjects();
-            finalString = "";
-
-            for (int i = 0; i < body.Length; i++)
-            {
-                findHtmlObject(ref i);
-            }
-            return finalString;
-        }
-
-        private void InitHtmlObjects()
+        protected override void InitHtmlObjects()
         {
             htmlObjects.Clear();
-            htmlObjects.Add(_service.GetService<Head>());
-            htmlObjects.Add(_service.GetService<ListItem>());
-            htmlObjects.Add(_service.GetService<Code>());
-            htmlObjects.Add(_service.GetService<InlineCode>());
-            htmlObjects.Add(_service.GetService<Text>());
+            htmlObjects.Add(_provider.GetService<Head>());
+            htmlObjects.Add(_provider.GetService<ListItem>());
+            htmlObjects.Add(_provider.GetService<Code>());
+            htmlObjects.Add(_provider.GetService<InlineCode>());
+            htmlObjects.Add(_provider.GetService<Text>());
         }
 
-        private void findHtmlObject(ref int index)
-        {
-            foreach (var obj in htmlObjects)
-            {
-                var text = obj.isHtmlObject(_body, index, depth);
-
-                if (text != null)
-                {
-                    index = obj.GetIndex();
-                    finalString += text;
-                    break;
-                }
-            }
-        }
+        
     }
 }

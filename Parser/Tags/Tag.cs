@@ -6,6 +6,8 @@ namespace Parser.Tags
 {
     public enum Tag
     {
+        Summary,
+
         Header,
         ListItem,
         Code,
@@ -15,7 +17,7 @@ namespace Parser.Tags
         Download,
         Audio,
         Video,
-        Text
+        Text,
     }
 
     public abstract class ITag

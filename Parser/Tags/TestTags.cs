@@ -8,6 +8,9 @@ namespace Parser.Tags
     {
         public override Dictionary<Tag, string[]> tags { get; set; } = new Dictionary<Tag, string[]>()
         {
+            // {0} - Title, {1} - book name, {2} - path/to page
+            { Tag.Summary, new string[]{"<folder id={0}>{1}</folder>", "<button url={1}/{2}>{0}</button>" } },
+
             { Tag.Header, new string[]{ "<head>{0}</head>\n", "<tags>{0}</tags>\n"  } },
             { Tag.ListItem,new string[]{ "<card-head id={0}>{1}</card-head>\n", "<text id={0}>{1}</text>\n" } },
             { Tag.Code, new string[]{ "<code>{0}</code>\n" } },
