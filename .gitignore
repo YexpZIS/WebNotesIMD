@@ -2,3 +2,9 @@
 ToDo.txt
 WebNotes/bin/Debug/netcoreapp3.1/source/TestBook/source/123.mp3
 WebNotes/bin/Debug/netcoreapp3.1/source/TestBook/source/v.mp4
+WebNotes/bin/Release
+WebNotes/obj
+
+Tests/obj
+Parser/obj
+Parser/bin/Release/

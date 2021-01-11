@@ -20,7 +20,7 @@ namespace WebNotes
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().UseUrls("http://192.168.0.116:5000", "https://192.168.0.116:5001");
+                    webBuilder.UseStartup<Startup>()/*.UseUrls("http://192.168.0.116:5000", "https://192.168.0.116:5001")*/;
                 });
     }
 }

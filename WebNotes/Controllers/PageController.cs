@@ -6,18 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace WebNotes.Controllers
 {
     public class PageController : Controller
     {
+        private readonly IConfiguration _config;
         private readonly MarkdownParser _parser;
-        private string pathToSource = "bin/Debug/netcoreapp3.1/source";
+        //private string pathToSource = "bin/Debug/netcoreapp3.1/source";
 
         private FileInfo file;
 
-        public PageController(MarkdownParser parser)
+        public PageController(IConfiguration config, MarkdownParser parser)
         {
+            _config = config;
             _parser = parser;
         }
 
@@ -64,7 +67,7 @@ namespace WebNotes.Controllers
 
         private string GetFullPath(string book, string path)
         {
-            return $"{pathToSource}/{book}/{path}";
+            return $"{_config["SourcePath"]}/{book}/{path}";
         }
 
         /*public ActionResult TestPage()
@@ -76,7 +79,7 @@ namespace WebNotes.Controllers
         [HttpGet]
         public ActionResult Get(string book, string page = "index.md")
         {
-            ViewBag.Html = _parser.ParsePage($"/{pathToSource}/{book}/{page}");
+            ViewBag.Html = _parser.ParsePage(GetFullPath(book, page));
             return View("Content");
         }
 
