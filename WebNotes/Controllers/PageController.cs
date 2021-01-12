@@ -26,8 +26,18 @@ namespace WebNotes.Controllers
 
         public ActionResult Index(string book ,string page = "index.md")
         {
+            if (book == null)
+            {
+                book = GetDefaultBook();
+            }
+            if (page == null)
+            {
+                page = "index.md";
+            }
+
             ViewBag.Book = book;
             ViewBag.Page = page;
+            ViewBag.Summary = string.Format(_parser.ParseTableOfContents(GetFullPath(book, "SUMMARY.md")) + "</div></div>",null, null, book);
             return View("TableOfContents");
         }
 
@@ -81,6 +91,12 @@ namespace WebNotes.Controllers
         {
             ViewBag.Html = _parser.ParsePage(GetFullPath(book, page));
             return View("Content");
+        }
+
+        private string GetDefaultBook()
+        {
+            DirectoryInfo info = new DirectoryInfo(Directory.GetCurrentDirectory()+ _config["SourcePath"]);
+            return info.GetDirectories()[0].Name;
         }
 
         /*[HttpGet]

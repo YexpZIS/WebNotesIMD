@@ -5,46 +5,4 @@
     Layout = "_PageLayout";
 }
 
-<div class="summary mt-3">
-    <div id="accordion">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <button class="btn btn-link button-text-fix" data-toggle="collapse" data-target="#block_1" aria-expanded="false">
-                        Шифрование
-                    </button>
-                </h5>
-            </div>
-
-
-            <div id="block_1" class="collapse show" aria-labelledby="block_1" data-parent="#accordion_1">
-                <div class="card-body bg-light">
-                    <div class="button-text-fix page"><a href="" class="text-secondary">GPG. Шифрование в линуксе.</a></div>
-                    <div class="button-text-fix page"><a href="" class="text-secondary">Page 2</a></div>
-                    <div class="button-text-fix page"><a href="" class="text-secondary">Page 3</a></div>
-                    <div class="button-text-fix page"><a href="" class="text-secondary">Page 4</a></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">
-                    <button class="btn btn-link button-text-fix" data-toggle="collapse" data-target="#block_2" aria-expanded="false">
-                        Block2
-                    </button>
-                </h5>
-            </div>
-
-
-            <div id="block_2" class="collapse" aria-labelledby="block_2" data-parent="#accordion_2">
-                <div class="card-body bg-light">
-                    <div class="button-text-fix page"><button onclick="load('TestBook','index.md');">Index</button></div>
-                    <div class="button-text-fix page"><button onclick="load('TestBook','Восстановление из backup.md');">Восстановление из backup</button></div>
-                    <div class="button-text-fix page"><button onclick="load('TestBook','Создание backup.md');">Создание backup</button></div>
-                    <div class="button-text-fix page"><a href="" class="text-secondary">Page 40</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Raw(@ViewBag.Summary)

@@ -43,8 +43,8 @@ namespace Parser
             services.AddTransient<FolderItem>(); // Transient
 
             // Tags
-            //services.AddSingleton<ITag,WebNotesTags>();
-            services.AddSingleton<ITag,TestTags>();
+            services.AddSingleton<ITag,WebNotesTags>();
+            //services.AddSingleton<ITag,TestTags>();
 
             serviceProvider = services.BuildServiceProvider();
             
@@ -75,10 +75,15 @@ namespace Parser
 
         public string ParseTableOfContents(string tableOfContents)
         {
+            string text = "";
             // Оглавление
-            var summary = serviceProvider.GetService<SummaryDisassemble>();
-            var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() + tableOfContents);
-            string text = summary.Disassemble(lines, 0);
+            try
+            {
+                var summary = serviceProvider.GetService<SummaryDisassemble>();
+                var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() + tableOfContents);
+                text = summary.Disassemble(lines, 0);
+            }
+            catch { }
 
             return text;
         }

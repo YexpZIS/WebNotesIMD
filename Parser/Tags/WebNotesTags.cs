@@ -8,8 +8,23 @@ namespace Parser.Tags
     {
         public override Dictionary<Tag, string[]> tags { get; set; } = new Dictionary<Tag, string[]>()
         {
-            { Tag.Summary, new string[]{ @"<div id='menu_block{0}' class='collapse' aria-labelledby='menu_block{0}' data-parent='#accordion_menu{0}'>
-                <div class='card-body bg-light'>{1}</div>", "<div class='button-text-fix page'><button onclick='load('{1}','{2}');'>{0}</button></div>" } },
+            { Tag.BookTitle, new string[]{ @"<div class='text-center book-name'>
+                                                <label>{0}</label>
+                                                <img src='img/cross.svg' onclick='closeNav()'/>
+                                            </div>
+                        <div class='summary mt-3'>
+                            <div id='accordion'>" } },
+            { Tag.Summary, new string[]{ @"<div class='card'>
+                                <div class='card-header' >
+                                    <h5 class='mb-0'>
+                                        <button class='btn btn-link button-text-fix' data-toggle='collapse' data-target='#block_menu_{0}' aria-expanded='false'>
+                                            {1}
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id='block_menu_{0}' class='collapse show' aria-labelledby='block_menu_{0}' data-parent='#accordion_menu_{0}'>
+                                    <div class='card-body bg-light'>{2}</div></div></div>",
+                "<div class='button-text-fix page'><button onclick=\"load('{2}','{1}');\">{0}</button></div>" } },
 
             { Tag.Header, new string[]{ @"<div class='cus_body'>
                     <div class='container-fluid'>
