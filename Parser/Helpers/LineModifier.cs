@@ -71,6 +71,31 @@ namespace Parser.Helpers
 
         public string[] GetTextFromPattern(string text, string[] pattern)
         {
+            string[] result = new string[2];
+
+            if (pattern.Length >= 3) 
+            {
+                /*int ind = 0;
+                for (int y = -1; y <= 2; y++)
+                {
+                    if (y >= 0)
+                    {
+                        ind = text.IndexOf(pattern[y]);
+                    }
+                    text = text.Substring(pattern[0].Length);
+                }*/
+
+                text = text.Substring(pattern[0].Length);
+                int i = text.IndexOf(pattern[1]);
+
+                result[0] = text.Substring(0, i);
+                text = text.Substring(i + pattern[1].Length);
+
+                i = text.IndexOf(pattern[2]);
+                result[1] = text.Substring(0, i);
+
+                return result;
+            }
             //![img](source) -> new string[]{"img","source"};
             return null;
         }

@@ -191,10 +191,68 @@ namespace Tests.Parser.Helpers
                 Assert.AreEqual(3, index);
             }
 
+
+            // FindIndexOnThisDepth
+
+            [Test]
+            public void FindIndexOnThisDepth_NoDelimiter_Test()
+            {
+                // Arrange
+                lines = new string[] {"","" };
+                // Act
+                index = _index.FindIndexOnThisDepth(ref lines, 0, 0 , "- ");
+                // Assert
+                Assert.AreEqual(0, index);
+            }
+
+            [Test]
+            public void FindIndexOnThisDepth_Test()
+            {
+                // Arrange
+                lines = new string[] { "\t","\t", "- ", "" };
+                // Act
+                index = _index.FindIndexOnThisDepth(ref lines, 0, 0, "- ");
+                // Assert
+                Assert.AreEqual(2, index);
+            }
+
+            [Test]
+            public void FindIndexOnThisDepth_IfDepthAreNotEqual_Test()
+            {
+                // Arrange
+                lines = new string[] { "- ","\t", "\t", "\t- ", "- " };
+                // Act
+                index = _index.FindIndexOnThisDepth(ref lines, 1, 0, "- ");
+                // Assert
+                Assert.AreEqual(4, index);
+            }
+
+            [Test]
+            public void FindIndexOnThisDepth_IfButtonDevideTwoBlocks_Test()
+            {
+                // Arrange
+                lines = new string[] { "- ", "\t", "\t", "*[]() ","- " };
+                // Act
+                index = _index.FindIndexOnThisDepth(ref lines, 1, 0, "- ");
+                // Assert
+                Assert.AreEqual(3, index);
+            }
+
+            [Test]
+            public void FindIndexOnThisDepth_DifferentDepthLevels_Test()
+            {
+                // Arrange
+                lines = new string[] { " ", "\t", "\t\t\t ", "\t\t\t*[]() ", "\t\t\t\t\ttext ","\t\t\t", "U" };
+                // Act
+                index = _index.FindIndexOnThisDepth(ref lines, 2, 2, "- ");
+                // Assert
+                Assert.AreEqual(6, index);
+            }
+
         }
 
 
-
+        
 
 
         public class Unit_Tests

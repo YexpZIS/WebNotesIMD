@@ -43,6 +43,19 @@ namespace Tests.Parser.Helpers
         }
 
         // Arrange
+        [TestCase(new string[] { "", "" },0,0, 0)]
+        [TestCase(new string[] { "\t", "\t", "- ", "" }, 0, 0, 2)]
+        [TestCase(new string[] { "- ", "\t", "\t", "\t- ", "- " }, 1, 0, 4)]
+        [TestCase(new string[] { "- ", "\t", "\t", "*[]() ", "- " }, 1, 0, 3)]
+        public void check_FindIndexOnThisDepth(string[] lines,int index, int depth, int result)
+        {
+            // Act
+            int i = _seeker.FindIndexOnThisDepth(ref lines, index,depth ,"- ");
+            // Assert
+            Assert.AreEqual(result, i);
+        }
+
+        // Arrange
         [TestCase("  Text", 0)]
         [TestCase("    Text", 1)]
         [TestCase("\tText", 1)]
