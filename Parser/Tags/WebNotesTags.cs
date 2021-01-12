@@ -24,7 +24,7 @@ namespace Parser.Tags
                                 </div>
                                 <div id='block_menu_{0}' class='collapse show' aria-labelledby='block_menu_{0}' data-parent='#accordion_menu_{0}'>
                                     <div class='card-body bg-light'>{2}</div></div></div>",
-                "<div class='button-text-fix page'><button onclick=\"load('{2}','{1}');\">{0}</button></div>" } },
+                "<div class='page'><button class=\"button-text-fix\" onclick=\"load('{2}','{1}');\">{0}</button></div>" } },
 
             { Tag.Header, new string[]{ @"<div class='cus_body'>
                     <div class='container-fluid'>

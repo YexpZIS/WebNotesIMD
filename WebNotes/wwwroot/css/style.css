@@ -65,11 +65,29 @@ pre{
 }
 
 .button-text-fix {
-    max-width:100%;
-    display:inline-block;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    max-width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: transparent;
+    border-color: transparent;
+    /*border-style: none;*/
+    border-width: 0px;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+    .button-text-fix:hover {
+        text-decoration: underline;
+    }
+
+button:active, button:focus {
+    outline: none !important;
+}
+
+button::-moz-focus-inner {
+    border: 0 !important;
 }
 
 /* table */

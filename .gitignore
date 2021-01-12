@@ -3,8 +3,11 @@ ToDo.txt
 WebNotes/bin/Debug/netcoreapp3.1/source/TestBook/source/123.mp3
 WebNotes/bin/Debug/netcoreapp3.1/source/TestBook/source/v.mp4
 WebNotes/bin/Release
+WebNotes/bin/
 WebNotes/obj
 
 Tests/obj
+Tests/bin
 Parser/obj
+Parser/bin/
 Parser/bin/Release/
