@@ -69,6 +69,12 @@ namespace Parser.Helpers
             }
         }
 
+        public string[] GetTextFromPattern(string text, string[] pattern)
+        {
+            //![img](source) -> new string[]{"img","source"};
+            return null;
+        }
+
         private void ClearValues()
         {
             result = "";

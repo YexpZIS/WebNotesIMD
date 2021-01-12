@@ -32,6 +32,11 @@ namespace Parser.Disassemble
             InitHtmlObjects();
             finalString = "";
 
+            if (body == null)
+            {
+                return "";
+            }
+
             for (int i = 0; i < body.Length; i++)
             {
                 findHtmlObject(ref i);

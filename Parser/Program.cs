@@ -10,7 +10,8 @@ namespace Parser
         {
             _parser = new MarkdownParser();
 
-            _parser.ParsePage("index.md");
+            //_parser.ParsePage("index.md");
+            _parser.ParseTableOfContents("");
 
             Console.WriteLine("Hello World!");
         }

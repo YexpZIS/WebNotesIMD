@@ -32,6 +32,7 @@ namespace Tests.Parser.TableOfContents
             text = _button.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<button url={2}/path/to/file>Text</button>", text);
+            Assert.AreEqual(0, _button.GetIndex());
         }
 
         [Test]
@@ -43,6 +44,7 @@ namespace Tests.Parser.TableOfContents
             text = _button.isHtmlObject(_lines, 0, 1);
             // Assert
             Assert.AreEqual("<button url={2}/path/to/file>Text</button>", text);
+            Assert.AreEqual(0, _button.GetIndex());
         }
 
         [Test]
@@ -54,6 +56,7 @@ namespace Tests.Parser.TableOfContents
             text = _button.isHtmlObject(_lines, 0, 1);
             // Assert
             Assert.AreEqual("<button url={2}/path/to/file>Text</button>", text);
+            Assert.AreEqual(0, _button.GetIndex());
         }
 
         [Test]
@@ -65,6 +68,18 @@ namespace Tests.Parser.TableOfContents
             text = _button.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual(null, text);
+            Assert.AreEqual(1, _button.GetIndex());
+        }
+        [Test]
+        public void NoButtonsOnZeroDepth()
+        {
+            // Arrange
+            _lines = new string[] { "\t* [Text](path/to/file)" };
+            // Act
+            text = _button.isHtmlObject(_lines, 0, 0);
+            // Assert
+            Assert.AreEqual(null, text);
+            Assert.AreEqual(1, _button.GetIndex());
         }
 
         [Test]
@@ -76,6 +91,7 @@ namespace Tests.Parser.TableOfContents
             text = _button.isHtmlObject(_lines, 0, 0);
             // Assert
             Assert.AreEqual("<button url={2}/path>Title</button>", text);
+            Assert.AreEqual(0, _button.GetIndex());
         }
 
         [Test]
@@ -88,6 +104,7 @@ namespace Tests.Parser.TableOfContents
             text += _button.isHtmlObject(_lines, 1, 0);
             // Assert
             Assert.AreEqual("<button url={2}/path/to/file>Text</button><button url={2}/path/to/file2>Text2</button>", text);
+            Assert.AreEqual(1, _button.GetIndex());
         }
     }
 }

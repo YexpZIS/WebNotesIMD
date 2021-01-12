@@ -27,7 +27,7 @@ namespace Tests.Parser.TableOfContents
             // Act
             text = _title.isHtmlObject(_lines, 0, 0);
             // Assert
-            Assert.AreEqual("Title", text);
+            Assert.AreEqual("<bookName>Title</bookName>", text);
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Tests.Parser.TableOfContents
             // Act
             text = _title.isHtmlObject(_lines, 0, 0);
             // Assert
-            Assert.AreEqual("Title", text);
+            Assert.AreEqual("<bookName>Title</bookName>", text);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Tests.Parser.TableOfContents
             // Act
             text = _title.isHtmlObject(_lines, 0, 0);
             // Assert
-            Assert.AreEqual("More than book", text);
+            Assert.AreEqual("<bookName>More than book</bookName>", text);
         }
 
         [Test]

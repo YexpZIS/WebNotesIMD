@@ -6,6 +6,7 @@ namespace Parser.Tags
 {
     public enum Tag
     {
+        BookTitle,
         Summary,
 
         Header,

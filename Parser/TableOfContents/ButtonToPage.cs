@@ -27,6 +27,7 @@ namespace Parser.TableOfContents
             if (button.StartsWith(symbols[0])) 
             {
                 Parse(button);
+                this.index = index;
                 return GetHtml();
             }
 

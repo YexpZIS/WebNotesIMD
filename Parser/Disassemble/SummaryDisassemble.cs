@@ -23,6 +23,7 @@ namespace Parser.Disassemble
             htmlObjects.Add(_provider.GetService<BookTitle>());
             htmlObjects.Add(_provider.GetService<FolderItem>());
             htmlObjects.Add(_provider.GetService<ButtonToPage>());
+            htmlObjects.Add(_provider.GetService<TableOfContents.TextPlug>());
         }
     }
 }

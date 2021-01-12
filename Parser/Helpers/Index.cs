@@ -22,5 +22,22 @@ namespace Parser.Helpers
 
             return result;
         }
+
+        public int FindIndexOnThisDepth(ref string[] lines, int index, int nowDepth, string delimiter = "----")
+        {
+            for (int i = index; i < lines.Length; i++)
+            {
+                if (lines[i].IndexOf(delimiter) != -1 && _depth.GetDepth(lines[i]) == nowDepth)
+                {
+                    return i;
+                }
+                else if (_depth.GetDepth(lines[i]) < nowDepth + 1)
+                {
+                    return i;
+                }
+            }
+
+            return lines.Length;
+        }
     }
 }

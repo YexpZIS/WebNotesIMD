@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Parser.Disassemble;
 using Parser.Helpers;
 using Parser.HtmlObjects;
+using Parser.TableOfContents;
 using Parser.Tags;
 
 namespace Parser
@@ -35,8 +36,15 @@ namespace Parser
             services.AddSingleton<InlineCode>();
             services.AddSingleton<Text>();
 
+            // TableOfContents
+            services.AddSingleton<BookTitle>();
+            services.AddSingleton<ButtonToPage>();
+            services.AddSingleton<TextPlug>();
+            services.AddTransient<FolderItem>(); // Transient
+
             // Tags
-            services.AddSingleton<ITag, WebNotesTags>();
+            //services.AddSingleton<ITag,WebNotesTags>();
+            services.AddSingleton<ITag,TestTags>();
 
             serviceProvider = services.BuildServiceProvider();
             
@@ -48,7 +56,7 @@ namespace Parser
 
             stopwatch.Start();
             string html = "Errore";
-            //try
+            try
             {
                 var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() + fileName);
 
@@ -58,7 +66,7 @@ namespace Parser
 
                 html = parser.Disassemble(lines, 0); 
             }
-            //catch { }
+            catch { }
 
             stopwatch.Stop();
             return html + "<br>Milliseconds: " + stopwatch.ElapsedMilliseconds+
@@ -67,9 +75,12 @@ namespace Parser
 
         public string ParseTableOfContents(string tableOfContents)
         {
-            // Огдавление
+            // Оглавление
+            var summary = serviceProvider.GetService<SummaryDisassemble>();
+            var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() + tableOfContents);
+            string text = summary.Disassemble(lines, 0);
 
-            return "";
+            return text;
         }
     }
 }

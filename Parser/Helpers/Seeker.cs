@@ -24,6 +24,11 @@ namespace Parser.Helpers
             return _index.FindIndex(ref lines, index, nowDepth, delimiter);
         }
 
+        public int FindIndexOnThisDepth(ref string[] lines, int index, int nowDepth, string delimiter = "----")
+        {
+            return _index.FindIndexOnThisDepth(ref lines, index, nowDepth, delimiter);
+        }
+
         // Depth
 
         public int GetDepth(string line)

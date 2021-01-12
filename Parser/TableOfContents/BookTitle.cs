@@ -34,7 +34,7 @@ namespace Parser.TableOfContents
                 string line = Data[index];
                 string title = line.Substring(symbol.Length, line.Length - symbol.Length);
 
-                return title;
+                return string.Format(_tags.tags[Tag.BookTitle][0],title);
             }
 
             return null;
