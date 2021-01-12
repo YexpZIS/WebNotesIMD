@@ -21,7 +21,7 @@ namespace Tests.Parser.Disassemble
             ServiceCollection services = new ServiceCollection();
 
             // Disassemble
-            services.AddTransient<IDisassemble, BodyDisassemble>();
+            services.AddTransient<BodyDisassemble>();
 
             // Helpers
             services.AddSingleton<IDepth, Depth>();
@@ -45,7 +45,7 @@ namespace Tests.Parser.Disassemble
         [SetUp]
         public void GetDisassemble()
         {
-            _disassemble = _provider.GetService<IDisassemble>();
+            _disassemble = _provider.GetService<BodyDisassemble>();
             _provider.GetService<ITag>().ResetId();
         }
 

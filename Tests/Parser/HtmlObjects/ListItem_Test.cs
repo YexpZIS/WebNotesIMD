@@ -46,7 +46,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x=>x.Disassemble(new string[] { "body", "text" },0)).Returns("body\ntext");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
             // Assert
@@ -65,7 +66,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] {  "text" }, 0)).Returns("body");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
@@ -83,7 +85,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "some text" }, 0)).Returns("some text");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
@@ -104,7 +107,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "body", "random text", "random text0", "random text5" }, 0)).Returns(result);
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
@@ -126,7 +130,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "\tbody", "\ttext", "\t----", "\tsome text" }, 0)).Returns("body OK");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
@@ -145,7 +150,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "\tbody", "\ttext", "\t----", "\tsome text" }, 0)).Returns("body OK");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
@@ -166,7 +172,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "\tsome text" }, 1)).Returns("body OK");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 3, -1);
@@ -185,7 +192,8 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] {  "\tsome text" }, 1)).Returns("body OK");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             // Act
             text = _item.isHtmlObject(_lines, 3, -1);
@@ -206,7 +214,9 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "body", "text" }, 0)).Returns("body\ntext");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
+
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
             // Assert
@@ -222,7 +232,9 @@ namespace Tests.Parser.HtmlObjects
 
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             //mock.Setup(x => x.Disassemble(new string[] { "body", "text" }, 0)).Returns("body\ntext");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
+
             // Act
             text = _item.isHtmlObject(_lines, 0, -1);
             // Assert
@@ -242,7 +254,8 @@ namespace Tests.Parser.HtmlObjects
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "\tsome text" }, 1)).Returns("body OK");
             mock.Setup(x => x.Disassemble(new string[] { "YoW", "\ttext", "\t----", "\tsome text", "\thead2", "\t----", "\tbody" }, 0)).Returns("body OK 2");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             text = _item.isHtmlObject(_lines, 3, -1);
             text = _item.isHtmlObject(_lines_2, 0, 1);
@@ -264,7 +277,8 @@ namespace Tests.Parser.HtmlObjects
             Mock<IDisassemble> mock = new Mock<IDisassemble>();
             mock.Setup(x => x.Disassemble(new string[] { "\tsome text" }, 1)).Returns("body OK");
             mock.Setup(x => x.Disassemble(new string[] {  }, 0)).Returns("body OK 2");
-            _item = new ListItem(mock.Object, _tag, _seeker);
+            _item = new ListItem(null, _tag, _seeker);
+            _item.SetDisassembler(mock.Object);
 
             text = _item.isHtmlObject(_lines, 3, -1);
             text = _item.isHtmlObject(_lines_2, 0, 1);

@@ -19,8 +19,8 @@ namespace Parser
             var services = new ServiceCollection();
 
             // Disassemble
-            services.AddTransient<IDisassemble, BodyDisassemble>(); // Transient
-            services.AddTransient<IDisassemble, SummaryDisassemble>(); // Transient
+            services.AddTransient<BodyDisassemble>(); // Transient
+            services.AddTransient<SummaryDisassemble>(); // Transient
 
             // Helpers
             services.AddSingleton<IDepth,Depth>();
@@ -48,18 +48,21 @@ namespace Parser
 
             stopwatch.Start();
             string html = "Errore";
-            try
+            //try
             {
                 var lines = System.IO.File.ReadAllLines(System.IO.Directory.GetCurrentDirectory() + fileName);
 
-                var parser = serviceProvider.GetService<IDisassemble>();
+                var parser = serviceProvider.GetService<BodyDisassemble>();
+                var tags = serviceProvider.GetService<ITag>();
+                tags.ResetId();
 
                 html = parser.Disassemble(lines, 0); 
             }
-            catch { }
+            //catch { }
 
             stopwatch.Stop();
-            return html + "<br>Milliseconds: " + stopwatch.ElapsedMilliseconds;
+            return html + "<br>Milliseconds: " + stopwatch.ElapsedMilliseconds+
+                "<br>TagId: "+ serviceProvider.GetService<ITag>().id;
         }
 
         public string ParseTableOfContents(string tableOfContents)

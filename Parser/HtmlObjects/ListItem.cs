@@ -15,7 +15,12 @@ namespace Parser.HtmlObjects
         private int nowDepth = 0;
         private string[] Data;
 
-        public ListItem(IDisassemble disassemble,ITag tags, Seeker seeker) : base(tags, seeker)
+        public ListItem(BodyDisassemble disassemble,ITag tags, Seeker seeker) : base(tags, seeker)
+        {
+            _body = disassemble;
+        }
+
+        public void SetDisassembler(IDisassemble disassemble)
         {
             _body = disassemble;
         }

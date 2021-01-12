@@ -23,16 +23,16 @@ namespace Tests.Parser.TableOfContents
             _folder = provider.GetService<FolderItem>();
         }
 
-        /*[Test]
+        [Test]
         public void SimpleTest()
         {
             // Arrange
-            _lines = new string[] { "- Backup", "\t* [Text](path/file)", "\t* [Text2](path/file)",
+            _lines = new string[] { "- Backup", "\t* [Text](path/file)", "\t* [Text](path/file)",
                                     "- Title2", "\t* [Tex2](path/file)", "\t* [Text3](path/file)"};
             // Act
-            text = _summary.isHtmlObject(_lines, 0, 0);
+            text = _folder.isHtmlObject(_lines, 0, 0);
             // Assert
-            Assert.AreEqual("", text);
-        }*/
+            Assert.AreEqual("<folder id=1>Backup<buttons>\t* [Text](path/file)\t* [Text](path/file)</buttons></folder>", text);
+        }
     }
 }
